@@ -2,6 +2,10 @@
 lib
 obj
 
+# ada
+main
+tester
+
 # sublime text 2
 *.sublime-workspace
 
