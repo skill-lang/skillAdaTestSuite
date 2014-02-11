@@ -10,7 +10,7 @@ main:
 build_tests:
 	gprbuild $(LIB_AHVEN) gnat/skill_tests.gpr
 
-check: clean build_tests
+check: build_tests
 	./tester
 
 clean:
