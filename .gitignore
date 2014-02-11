@@ -2,6 +2,9 @@
 lib
 obj
 
+# sublime text 2
+*.sublime-workspace
+
 # skill-test subprojects
 testsuites/*
 
