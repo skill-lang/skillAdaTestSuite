@@ -1,6 +1,8 @@
 with Ada.Text_IO;
+with Date.Internal.Parsers.Byte_Reader;
 
 procedure Main is
 begin
-   Ada.Text_IO.Put_Line ("Hello World");
+   Date.Internal.Parsers.Byte_Reader.Read ("resources/date-example.sf");
+   Date.Internal.Parsers.Byte_Reader.Write ("resources/ada.sf");
 end Main;
