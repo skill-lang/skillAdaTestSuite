@@ -1,12 +1,34 @@
+with Interfaces;
+
 package Date is
 
    --  data types
    --  http://beru.univ-brest.fr/~singhoff/DOC/LANG/ADA/BOOK/10.html
    --  http://en.wikipedia.org/wiki/Integer_%28computer_science%29
-   type Byte is mod 256;
 
-   subtype Short is Short_Integer'Base;
-   subtype Long is Long_Long_Integer'Base range -(2**63) .. +(2**63 - 1);
+   subtype Byte is Interfaces.Unsigned_8;
+
+   --  Short_Short_Integer
+   subtype i8 is Short_Short_Integer'Base range -(2**7) .. +(2**7 - 1);
+
+   --  Short_Integer
+   subtype Short is Short_Integer'Base range -(2**15) .. +(2**15 - 1);
+   subtype i16 is Short;
+
+   --  Integer
+   subtype i32 is Integer'Base range -(2**31) .. +(2**31 - 1);
+
+   --  Long_Integer
+   subtype Long is Long_Integer'Base range -(2**63) .. +(2**63 - 1);
+   subtype i64 is Long;
+   subtype v64 is Long;
+
+   --  Float
+   subtype f32 is Float;
+
+   --  Double
+   subtype Double is Long_Float'Base;
+   subtype f64 is Double;
 
    type Date_Type is
       record

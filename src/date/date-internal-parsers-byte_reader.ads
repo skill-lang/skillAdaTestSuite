@@ -9,8 +9,18 @@ package Date.Internal.Parsers.Byte_Reader is
    procedure Read (File_Name : String);
 
    function Next_Byte return Byte;
-   function i32 return Integer;
-   function v64 return Long;
+
+   function Next_i8 return i8;
+   function Next_i16 return i16;
+   function Next_i32 return i32;
+   function Next_i64 return i64;
+
+   function Next_v64 return v64;
+
+   function Next_f32 return f32;
+   function Next_f64 return f64;
+
+   function Next_String (Length : Integer) return String;
 
    procedure Write (File_Name : String);
 
