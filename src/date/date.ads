@@ -26,7 +26,7 @@ package Date is
    --  Float
    subtype f32 is Float;
 
-   --  Double
+   --  Long_Float
    subtype Double is Long_Float'Base;
    subtype f64 is Double;
 
