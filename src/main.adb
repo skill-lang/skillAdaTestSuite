@@ -1,8 +1,8 @@
-with Ada.Text_IO;
-with Date.Internal.Parsers.Byte_Reader;
+with Date.Api.Skill_State;
 
 procedure Main is
+   use Date.Api;
 begin
-   Date.Internal.Parsers.Byte_Reader.Read ("resources/date-example.sf");
-   Date.Internal.Parsers.Byte_Reader.Write ("resources/ada.sf");
+   Skill_State.Read ("resources/date-example.sf");
+--   Skill_State.Read ("resources/twoNodeBlocks.sf");
 end Main;

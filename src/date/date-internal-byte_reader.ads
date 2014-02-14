@@ -1,16 +1,16 @@
-with Ada.Integer_Text_IO;
-with Ada.Text_IO;
-
 with Ada.Streams.Stream_IO;
 with Ada.Unchecked_Conversion;
+with Interfaces;
 
-package Date.Internal.Parsers.Byte_Reader is
+--  https://groups.google.com/forum/#!topic/comp.lang.ada/lZcb8pp0X_Q
+
+package Date.Internal.Byte_Reader is
 
    package ASS_IO renames Ada.Streams.Stream_IO;
 
-   procedure Read (File_Name : String);
+   subtype Byte is Interfaces.Unsigned_8;
 
-   function Read_Byte return Byte;
+   procedure Initialize (pInput_Stream : ASS_IO.Stream_Access);
 
    function Read_i8 return i8;
    function Read_i16 return i16;
@@ -24,6 +24,8 @@ package Date.Internal.Parsers.Byte_Reader is
 
    function Read_String (Length : Integer) return String;
 
-   procedure Write (File_Name : String);
+private
 
-end Date.Internal.Parsers.Byte_Reader;
+   function Read_Byte return Byte;
+
+end Date.Internal.Byte_Reader;

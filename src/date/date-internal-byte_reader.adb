@@ -1,6 +1,11 @@
-package body Date.Internal.Parsers.Byte_Reader is
+package body Date.Internal.Byte_Reader is
 
    Input_Stream : ASS_IO.Stream_Access;
+
+   procedure Initialize (pInput_Stream : ASS_IO.Stream_Access) is
+   begin
+      Input_Stream := pInput_Stream;
+   end Initialize;
 
    function Read_Byte return Byte is
       Next : Byte;
@@ -92,62 +97,4 @@ package body Date.Internal.Parsers.Byte_Reader is
       return New_String;
    end Read_String;
 
-   procedure Read (File_Name : String) is
-      Input_File : ASS_IO.File_Type;
-   begin
-      ASS_IO.Open (Input_File, ASS_IO.In_File, File_Name);
-      Input_Stream := ASS_IO.Stream (Input_File);
-
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-
-      declare
-         String_Length : Integer := Read_i32;
-      begin
-         Ada.Text_IO.Put_Line (i32'Image (String_Length));
-         Ada.Text_IO.Put_Line (Read_String (String_Length));
-      end;
-
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-      Ada.Text_IO.Put_Line (Long'Image (Read_v64));
-
-      ASS_IO.Close (Input_File);
-   end Read;
-
-   procedure Write (File_Name : String) is
-      Output_File : ASS_IO.File_Type;
-      Output_Stream : ASS_IO.Stream_Access;
-   begin
-      ASS_IO.Open (Output_File, ASS_IO.Out_File, File_Name);
-      Output_Stream := ASS_IO.Stream (Output_File);
-      Byte'Write (Output_Stream, Byte (1));
-      Byte'Write (Output_Stream, Byte (0));
-      Byte'Write (Output_Stream, Byte (0));
-      Byte'Write (Output_Stream, Byte (0));
-      Byte'Write (Output_Stream, Byte (4));
-
-      declare
-         Date : String := "date";
-      begin
-         for I in Date'Range loop
-            Byte'Write (Output_Stream, Character'Pos (Date (I)));
-         end loop;
-      end;
-
-      Byte'Write (Output_Stream, Byte (100));
-      Byte'Write (Output_Stream, Byte (97));
-      Byte'Write (Output_Stream, Byte (116));
-      Byte'Write (Output_Stream, Byte (101));
-      ASS_IO.Close (Output_File);
-   end Write;
-
-end Date.Internal.Parsers.Byte_Reader;
+end Date.Internal.Byte_Reader;
