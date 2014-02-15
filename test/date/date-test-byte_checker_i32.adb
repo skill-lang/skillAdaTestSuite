@@ -2,7 +2,7 @@ package body Date.Test.Byte_Checker_i32 is
 
    procedure Initialize (T : in out Test) is
    begin
-      Set_Name (T, "Date.Test.Byte_Checker.i32");
+      Set_Name (T, "Date.Test.Byte_Checker_i32");
       Ahven.Framework.Add_Test_Routine (T, First'Access, "'First");
       Ahven.Framework.Add_Test_Routine (T, Minus_One'Access, "-1");
       Ahven.Framework.Add_Test_Routine (T, Zero'Access, "0");
