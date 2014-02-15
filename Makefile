@@ -11,7 +11,7 @@ build_tests:
 	gprbuild $(LIB_AHVEN) gnat/skill_tests.gpr
 
 check: build_tests
-	./tester
+	./tester -c
 
 clean:
 	gprclean gnat/skill.gpr
