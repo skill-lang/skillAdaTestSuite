@@ -18,8 +18,16 @@ package body Date.Api.Skill_State is
    end Read;
 
    procedure Write (File_Name : String) is
+      package Byte_Writer renames Date.Internal.Byte_Writer;
+      Output_File : ASS_IO.File_Type;
    begin
-      null;
-   end;
+      ASS_IO.Open (Output_File, ASS_IO.Out_File, File_Name);
+      Ada.Text_IO.Put_Line (File_Name);
+
+      Byte_Writer.Initialize (ASS_IO.Stream (Output_File));
+      Byte_Writer.Write_v64 (-5);
+
+      ASS_IO.Close (Output_File);
+   end Write;
 
 end Date.Api.Skill_State;

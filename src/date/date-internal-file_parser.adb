@@ -8,8 +8,10 @@ package body Date.Internal.File_Parser is
       ASS_IO.Open (Input_File, ASS_IO.In_File, File_Name);
       Byte_Reader.Initialize (ASS_IO.Stream (Input_File));
 
-      Read_String_Block;
-      Read_Type_Block;
+      Ada.Text_IO.Put_Line (v64'Image (Byte_Reader.Read_v64));
+
+--      Read_String_Block;
+--      Read_Type_Block;
 
       ASS_IO.Close (Input_File);
    end Read;
@@ -24,7 +26,7 @@ package body Date.Internal.File_Parser is
 
       for I in String_Lengths'Range loop
          declare
-            New_String : String := Byte_Reader.Read_String (String_Lengths(I));
+            New_String : String := Byte_Reader.Read_String (String_Lengths (I));
          begin
             Ada.Text_IO.Put_Line (New_String);
          end;

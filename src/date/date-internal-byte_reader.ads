@@ -1,14 +1,8 @@
-with Ada.Streams.Stream_IO;
 with Ada.Unchecked_Conversion;
-with Interfaces;
 
 --  https://groups.google.com/forum/#!topic/comp.lang.ada/lZcb8pp0X_Q
 
 package Date.Internal.Byte_Reader is
-
-   package ASS_IO renames Ada.Streams.Stream_IO;
-
-   subtype Byte is Interfaces.Unsigned_8;
 
    procedure Initialize (pInput_Stream : ASS_IO.Stream_Access);
 

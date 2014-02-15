@@ -16,9 +16,12 @@ package body Date.Internal.Byte_Reader is
 
    --  Short_Short_Integer
    function Read_i8 return i8 is
-      A : i8 := i8 (Read_Byte);
+      type Result is mod 2 ** 8;
+      function Convert is new Ada.Unchecked_Conversion (Source => Result, Target => i8);
+
+      A : Result := Result (Read_Byte);
    begin
-      return A;
+      return Convert (A);
    end Read_i8;
 
    --  Short_Integer (Short)
@@ -48,30 +51,31 @@ package body Date.Internal.Byte_Reader is
       E : i64 := i64 (Read_Byte);
       F : i64 := i64 (Read_Byte);
       G : i64 := i64 (Read_Byte);
+      H : i64 := i64 (Read_Byte);
    begin
-      return A * (2**48) + B*(2**40) + C*(2**32) + D*(2**24) + E*(2**16) + F*(2**8) + G;
+      return A * (2**56) + B*(2**48) + C*(2**40) + D*(2**32) + E*(2**24) + F*(2**16) + G*(2**8) + H;
    end Read_i64;
 
-   function Read_v64 return Long is
-      type Long_Result is mod 2 ** 64;
-      function Convert is new Ada.Unchecked_Conversion (Source => Long_Result, Target => Long);
+   function Read_v64 return v64 is
+      type Result is mod 2 ** 64;
+      function Convert is new Ada.Unchecked_Conversion (Source => Result, Target => v64);
 
       Count : Natural := 0;
-      Result : Long_Result := 0;
-      Bucket : Long_Result := Long_Result (Read_Byte);
+      rval : Result := 0;
+      Bucket : Result := Result (Read_Byte);
    begin
       while (Count < 8 and then 0 /= (Bucket and 16#80#)) loop
-         Result := Result or ((Bucket and 16#7f#) * (2 ** (7 * Count)));
+         rval := rval or ((Bucket and 16#7f#) * (2 ** (7 * Count)));
          Count := Count + 1;
-         Bucket := Long_Result (Read_Byte);
+         Bucket := Result (Read_Byte);
       end loop;
 
       case Count is
-         when 8 => Result := Result or (Bucket * (2 ** (7 * Count)));
-         when others => Result := Result or ((Bucket and 16#7f#) * (2 ** (7 * Count)));
+         when 8 => rval := rval or (Bucket * (2 ** (7 * Count)));
+         when others => rval := rval or ((Bucket and 16#7f#) * (2 ** (7 * Count)));
       end case;
 
-      return Convert (Result);
+      return Convert (rval);
    end Read_v64;
 
    function Read_f32 return f32 is
