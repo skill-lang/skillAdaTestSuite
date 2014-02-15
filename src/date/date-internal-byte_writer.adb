@@ -124,6 +124,15 @@ package body Date.Internal.Byte_Writer is
       raise Unsupported_Type;
    end Write_f64;
 
+   procedure Write_Boolean (Value : Boolean) is
+   begin
+      case Value is
+         when True => Write_Byte (16#ff#);
+         when False => Write_Byte (16#00#);
+      end case;
+      Ada.Text_IO.Put_Line (Boolean'Image (Value));
+   end Write_Boolean;
+
    procedure Write_String (Value : String) is
    begin
       for I in Value'Range loop

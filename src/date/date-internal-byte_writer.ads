@@ -15,6 +15,7 @@ package Date.Internal.Byte_Writer is
    procedure Write_f32 (Value : f32);
    procedure Write_f64 (Value : f64);
 
+   procedure Write_Boolean (Value : Boolean);
    procedure Write_String (Value : String);
 
 private

@@ -1,11 +1,11 @@
 with Ahven.Framework;
 
-package Date.Test.Byte_Checker.v64 is
+package Date.Test.Byte_Checker_v64 is
    type Test is new Ahven.Framework.Test_Case with null record;
 
    procedure Initialize (T : in out Test);
 
-   function Write_Read (Value : Date.v64) return Date.v64;
+   function Write_Read (Value : v64) return v64;
 
    procedure First;
    procedure Minus_One;
@@ -13,4 +13,4 @@ package Date.Test.Byte_Checker.v64 is
    procedure Plus_One;
    procedure Last;
 
-end Date.Test.Byte_Checker.v64;
+end Date.Test.Byte_Checker_v64;

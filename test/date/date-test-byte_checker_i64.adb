@@ -1,4 +1,4 @@
-package body Date.Test.Byte_Checker.i64 is
+package body Date.Test.Byte_Checker_i64 is
 
    procedure Initialize (T : in out Test) is
    begin
@@ -10,10 +10,10 @@ package body Date.Test.Byte_Checker.i64 is
       Ahven.Framework.Add_Test_Routine (T, Last'Access, "'Last");
    end Initialize;
 
-   function Write_Read (Value : Date.i64) return Date.i64 is
+   function Write_Read (Value : i64) return i64 is
       Temp_File : ASS_IO.File_Type;
       Temp_Stream : ASS_IO.Stream_Access;
-      rval : Date.i64;
+      rval : i64;
    begin
       ASS_IO.Create (Temp_File, ASS_IO.Out_File);
       Temp_Stream := ASS_IO.Stream (Temp_File);
@@ -31,33 +31,33 @@ package body Date.Test.Byte_Checker.i64 is
    end Write_Read;
 
    procedure First is
-      Value : Date.i64 := Date.i64'First;
+      Value : i64 := i64'First;
    begin
-      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & Date.i64'Image (Value));
+      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & i64'Image (Value));
    end First;
 
    procedure Minus_One is
-      Value : Date.i64 := -1;
+      Value : i64 := -1;
    begin
-      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & Date.i64'Image (Value));
+      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & i64'Image (Value));
    end Minus_One;
 
    procedure Zero is
-      Value : Date.i64 := 0;
+      Value : i64 := 0;
    begin
-      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & Date.i64'Image (Value));
+      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & i64'Image (Value));
    end Zero;
 
    procedure Plus_One is
-      Value : Date.i64 := 1;
+      Value : i64 := 1;
    begin
-      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & Date.i64'Image (Value));
+      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & i64'Image (Value));
    end Plus_One;
 
    procedure Last is
-      Value : Date.i64 := Date.i64'Last;
+      Value : i64 := i64'Last;
    begin
-      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & Date.i64'Image (Value));
+      Ahven.Assert (Value = Write_Read (Value), "Read i64 is not " & i64'Image (Value));
    end Last;
 
-end Date.Test.Byte_Checker.i64;
+end Date.Test.Byte_Checker_i64;

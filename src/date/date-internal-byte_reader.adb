@@ -92,6 +92,16 @@ package body Date.Internal.Byte_Reader is
       return 0.0;
    end Read_f64;
 
+   function Read_Boolean return Boolean is
+      Unexcepted_Value : exception;
+   begin
+      case Read_Byte is
+         when 16#ff# => return True;
+         when 16#00# => return False;
+         when others => raise Unexcepted_Value;
+      end case;
+   end Read_Boolean;
+
    function Read_String (Length : Integer) return String is
       New_String : String (1 .. Length);
    begin

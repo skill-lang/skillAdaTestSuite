@@ -16,6 +16,7 @@ package Date.Internal.Byte_Reader is
    function Read_f32 return f32;
    function Read_f64 return f64;
 
+   function Read_Boolean return Boolean;
    function Read_String (Length : Integer) return String;
 
 private

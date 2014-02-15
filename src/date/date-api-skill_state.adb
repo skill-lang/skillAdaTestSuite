@@ -25,7 +25,7 @@ package body Date.Api.Skill_State is
       Ada.Text_IO.Put_Line (File_Name);
 
       Byte_Writer.Initialize (ASS_IO.Stream (Output_File));
-      Byte_Writer.Write_v64 (-5);
+      Byte_Writer.Write_i8 (-1);
 
       ASS_IO.Close (Output_File);
    end Write;

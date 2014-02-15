@@ -8,7 +8,7 @@ package body Date.Internal.File_Parser is
       ASS_IO.Open (Input_File, ASS_IO.In_File, File_Name);
       Byte_Reader.Initialize (ASS_IO.Stream (Input_File));
 
-      Ada.Text_IO.Put_Line (v64'Image (Byte_Reader.Read_v64));
+      Ada.Text_IO.Put_Line (Boolean'Image (Byte_Reader.Read_Boolean));
 
 --      Read_String_Block;
 --      Read_Type_Block;
