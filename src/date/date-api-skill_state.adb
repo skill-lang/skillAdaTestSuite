@@ -1,31 +1,47 @@
 package body Date.Api.Skill_State is
 
    procedure Read (File_Name : String) is
-      A : Date_Type := (Date => 5);
-      B : Date_Type := (Date => -5);
-      Dates : array (1 .. 2) of Date_Type;
    begin
       Date.Internal.File_Parser.Read (File_Name);
-
-      Ada.Text_IO.New_Line;
-
-      Dates (1) := A;
-      Dates (2) := B;
-
-      for I in Dates'Range loop
-         Ada.Text_IO.Put_Line (Long'Image (Dates (I).Date));
-      end loop;
    end Read;
 
    procedure Write (File_Name : String) is
+      package ASS_IO renames Ada.Streams.Stream_IO;
       package Byte_Writer renames Date.Internal.Byte_Writer;
-      Output_File : ASS_IO.File_Type;
-   begin
-      ASS_IO.Open (Output_File, ASS_IO.Out_File, File_Name);
-      Ada.Text_IO.Put_Line (File_Name);
 
-      Byte_Writer.Initialize (ASS_IO.Stream (Output_File));
-      Byte_Writer.Write_i8 (-1);
+      Output_File : ASS_IO.File_Type;
+      Output_Stream : ASS_IO.Stream_Access;
+   begin
+      ASS_IO.Create (Output_File, ASS_IO.Out_File, File_Name);
+      Output_Stream := ASS_IO.Stream (Output_File);
+
+      Byte_Writer.Initialize (Output_Stream);
+
+      Byte_Writer.Write_v64 (3);
+      Byte_Writer.Write_i32 (6);
+      Byte_Writer.Write_i32 (6);
+      Byte_Writer.Write_i32 (4);
+      Byte_Writer.Write_String ("Dennis");
+      Byte_Writer.Write_String ("stefan");
+      Byte_Writer.Write_String ("timm");
+
+      Byte_Writer.Write_v64 (1);
+      Byte_Writer.Write_i32 (3);
+      Byte_Writer.Write_String ("ABC");
+
+      Byte_Writer.Write_v64 (0);
+
+      Byte_Writer.Write_v64 (1);
+      Byte_Writer.Write_i32 (3);
+      Byte_Writer.Write_String ("XYZ");
+
+      Byte_Writer.Write_v64 (0);
+
+      Byte_Writer.Write_v64 (2);
+      Byte_Writer.Write_i32 (3);
+      Byte_Writer.Write_i32 (3);
+      Byte_Writer.Write_String ("asd");
+      Byte_Writer.Write_String ("123");
 
       ASS_IO.Close (Output_File);
    end Write;

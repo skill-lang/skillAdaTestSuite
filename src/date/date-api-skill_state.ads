@@ -8,8 +8,6 @@ package Date.Api.Skill_State is
 
    procedure Read (File_Name : String);
 
-   package ASS_IO renames Ada.Streams.Stream_IO;
-
    procedure Write (File_Name : String);
 
 end Date.Api.Skill_State;
