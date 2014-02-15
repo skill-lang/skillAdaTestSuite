@@ -10,7 +10,7 @@ package Date.Internal.File_Parser is
 private
 
    function Read_String_Block return String_Pool_Type;
-   procedure Update_String_Pool (String_Pool : in out String_Pool_Type_Access);
+   procedure Next_String_Pool (String_Pool : in out String_Pool_Type_Access);
 
    procedure Read_Type_Block;
 

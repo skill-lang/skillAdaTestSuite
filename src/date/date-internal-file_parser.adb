@@ -9,12 +9,12 @@ package body Date.Internal.File_Parser is
       ASS_IO.Open (Input_File, ASS_IO.In_File, File_Name);
       Byte_Reader.Initialize (ASS_IO.Stream (Input_File));
 
-      Update_String_Pool (String_Pool);
-      Update_String_Pool (String_Pool);
-      Update_String_Pool (String_Pool);
-      Update_String_Pool (String_Pool);
-      Update_String_Pool (String_Pool);
-      Update_String_Pool (String_Pool);
+      Next_String_Pool (String_Pool);
+      Next_String_Pool (String_Pool);
+      Next_String_Pool (String_Pool);
+      Next_String_Pool (String_Pool);
+      Next_String_Pool (String_Pool);
+      Next_String_Pool (String_Pool);
 
       for I in String_Pool'Range loop
          Ada.Text_IO.Put_Line (Long'Image (I) & ": " & SU.To_String (String_Pool (I)));
@@ -45,7 +45,7 @@ package body Date.Internal.File_Parser is
       return New_String_Pool;
    end Read_String_Block;
 
-   procedure Update_String_Pool (String_Pool : in out String_Pool_Type_Access) is
+   procedure Next_String_Pool (String_Pool : in out String_Pool_Type_Access) is
       procedure Free is new Ada.Unchecked_Deallocation (String_Pool_Type, String_Pool_Type_Access);
 
       New_String_Pool : String_Pool_Type := Read_String_Block;
@@ -68,7 +68,7 @@ package body Date.Internal.File_Parser is
       for I in New_String_Pool'Range loop
          String_Pool (Old_String_Pool'Length + I) := New_String_Pool (I);
       end loop;
-   end Update_String_Pool;
+   end Next_String_Pool;
 
    procedure Read_Type_Block is
    begin
