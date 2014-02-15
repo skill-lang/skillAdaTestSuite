@@ -26,8 +26,8 @@ package body Date.Api.Skill_State is
       Byte_Writer.Write_String ("timm");
 
       Byte_Writer.Write_v64 (1);
-      Byte_Writer.Write_i32 (3);
-      Byte_Writer.Write_String ("ABC");
+      Byte_Writer.Write_i32 (12);
+      Byte_Writer.Write_String ("ABC oder XYZ");
 
       Byte_Writer.Write_v64 (0);
 
@@ -39,9 +39,9 @@ package body Date.Api.Skill_State is
 
       Byte_Writer.Write_v64 (2);
       Byte_Writer.Write_i32 (3);
-      Byte_Writer.Write_i32 (3);
+      Byte_Writer.Write_i32 (6);
       Byte_Writer.Write_String ("asd");
-      Byte_Writer.Write_String ("123");
+      Byte_Writer.Write_String ("123 56");
 
       ASS_IO.Close (Output_File);
    end Write;
