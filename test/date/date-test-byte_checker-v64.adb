@@ -11,12 +11,8 @@ package body Date.Test.Byte_Checker.v64 is
    end Initialize;
 
    function Write_Read (Value : Date.v64) return Date.v64 is
-      package Byte_Reader renames Date.Internal.Byte_Reader;
-      package Byte_Writer renames Date.Internal.Byte_Writer;
-
       Temp_File : ASS_IO.File_Type;
       Temp_Stream : ASS_IO.Stream_Access;
-
       rval : Date.v64;
    begin
       ASS_IO.Create (Temp_File, ASS_IO.Out_File);
