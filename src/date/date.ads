@@ -1,9 +1,5 @@
 package Date is
 
-   --  data types
-   --  http://beru.univ-brest.fr/~singhoff/DOC/LANG/ADA/BOOK/10.html
-   --  http://en.wikipedia.org/wiki/Integer_%28computer_science%29
-
    --  Short_Short_Integer
    subtype i8 is Short_Short_Integer'Base range -(2**7) .. +(2**7 - 1);
 

@@ -1,7 +1,5 @@
 with Ada.Unchecked_Conversion;
 
---  https://groups.google.com/forum/#!topic/comp.lang.ada/lZcb8pp0X_Q
-
 package Date.Internal.Byte_Reader is
 
    procedure Initialize (pInput_Stream : ASS_IO.Stream_Access);
