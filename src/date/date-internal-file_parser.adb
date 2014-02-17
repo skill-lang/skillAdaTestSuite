@@ -1,7 +1,6 @@
 package body Date.Internal.File_Parser is
 
    package Byte_Reader renames Date.Internal.Byte_Reader;
-   package String_Pool renames Date.Internal.String_Pool;
 
    procedure Read (File_Name : String) is
       Input_File : ASS_IO.File_Type;

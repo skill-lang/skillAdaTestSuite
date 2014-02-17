@@ -1,8 +1,4 @@
-with Ada.Text_IO;
-with Date.Internal.File_Parser;
-
-with Ada.Streams.Stream_IO;
-with Date.Internal.Byte_Writer;
+with Date.Internal.Serializable_State;
 
 package Date.Api.Skill_State is
 

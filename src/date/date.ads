@@ -24,7 +24,7 @@ package Date is
 
    type Date_Type is
       record
-         Date : Long;
+         date : Long;
       end record;
 
 end Date;
