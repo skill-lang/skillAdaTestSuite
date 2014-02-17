@@ -2,6 +2,11 @@ package body Date.Api.Skill_State is
 
    package Serializable_State renames Date.Internal.Serializable_State;
 
+   procedure Create is
+   begin
+      null;
+   end Create;
+
    procedure Read (File_Name : String) is
    begin
       Serializable_State.Read (File_Name);

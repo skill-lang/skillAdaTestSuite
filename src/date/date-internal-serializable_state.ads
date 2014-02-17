@@ -8,7 +8,6 @@ with Date.Internal.Byte_Writer;
 package Date.Internal.Serializable_State is
 
    procedure Read (File_Name : String);
-
    procedure Write (File_Name : String);
 
 end Date.Internal.Serializable_State;
