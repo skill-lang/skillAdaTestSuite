@@ -26,17 +26,27 @@ package body Date.Internal.File_Parser is
    end Read;
 
    function Read_String_Block return String_Pool_Type is
-      Length : Long := Byte_Reader.Read_v64;
-      String_Lengths : array (1 .. Length) of Integer;
-      New_String_Pool : String_Pool_Type (1 .. Length);
+      Count : Long := Byte_Reader.Read_v64;
+      String_Lengths : array (1 .. Count) of Integer;
+      New_String_Pool : String_Pool_Type (1 .. Count);
+      Last_End : Integer := 0;
    begin
-      for I in String_Lengths'Range loop
-         String_Lengths (I) := Byte_Reader.Read_i32;
-      end loop;
-
+      --  read ends
       for I in String_Lengths'Range loop
          declare
-            Next_String : String := Byte_Reader.Read_String (String_Lengths (I));
+            String_End : Integer := Byte_Reader.Read_i32;
+            String_Length : Integer := String_End - Last_End;
+         begin
+            String_Lengths (I) := String_End - Last_End;
+            Last_End := String_End;
+         end;
+      end loop;
+
+      --  read strings
+      for I in String_Lengths'Range loop
+         declare
+            String_Length : Integer := String_Lengths (I);
+            Next_String : String := Byte_Reader.Read_String (String_Length);
          begin
             New_String_Pool (I) := SU.To_Unbounded_String (Next_String);
          end;

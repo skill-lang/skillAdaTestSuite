@@ -19,8 +19,8 @@ package body Date.Api.Skill_State is
 
       Byte_Writer.Write_v64 (3);
       Byte_Writer.Write_i32 (6);
-      Byte_Writer.Write_i32 (6);
-      Byte_Writer.Write_i32 (4);
+      Byte_Writer.Write_i32 (12);
+      Byte_Writer.Write_i32 (16);
       Byte_Writer.Write_String ("Dennis");
       Byte_Writer.Write_String ("stefan");
       Byte_Writer.Write_String ("timm");
@@ -39,7 +39,7 @@ package body Date.Api.Skill_State is
 
       Byte_Writer.Write_v64 (2);
       Byte_Writer.Write_i32 (3);
-      Byte_Writer.Write_i32 (6);
+      Byte_Writer.Write_i32 (9);
       Byte_Writer.Write_String ("asd");
       Byte_Writer.Write_String ("123 56");
 
