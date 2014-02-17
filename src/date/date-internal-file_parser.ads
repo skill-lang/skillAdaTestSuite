@@ -1,5 +1,5 @@
-with Ada.Unchecked_Deallocation;
 with Date.Internal.Byte_Reader;
+with Date.Internal.String_Pool;
 
 with Ada.Text_IO;
 
@@ -10,7 +10,6 @@ package Date.Internal.File_Parser is
 private
 
    function Read_String_Block return String_Pool_Type;
-   procedure Next_String_Pool (String_Pool : in out String_Pool_Type_Access);
 
    procedure Read_Type_Block;
 

@@ -1,26 +1,22 @@
 package body Date.Internal.File_Parser is
 
    package Byte_Reader renames Date.Internal.Byte_Reader;
+   package String_Pool renames Date.Internal.String_Pool;
 
    procedure Read (File_Name : String) is
       Input_File : ASS_IO.File_Type;
-      String_Pool : String_Pool_Type_Access := new String_Pool_Type (1 .. 0);
    begin
       ASS_IO.Open (Input_File, ASS_IO.In_File, File_Name);
       Byte_Reader.Initialize (ASS_IO.Stream (Input_File));
 
-      Next_String_Pool (String_Pool);
-      Next_String_Pool (String_Pool);
-      Next_String_Pool (String_Pool);
-      Next_String_Pool (String_Pool);
-      Next_String_Pool (String_Pool);
-      Next_String_Pool (String_Pool);
-
-      for I in String_Pool'Range loop
-         Ada.Text_IO.Put_Line (Long'Image (I) & ": " & SU.To_String (String_Pool (I)));
+      while (not ASS_IO.End_Of_File (Input_File)) loop
+         String_Pool.Put (Read_String_Block);
+         Read_Type_Block;
       end loop;
 
---      Read_Type_Block;
+      for I in String_Pool.Get_All'Range loop
+         Ada.Text_IO.Put_Line (Long'Image (I) & ": " & String_Pool.Get (I));
+      end loop;
 
       ASS_IO.Close (Input_File);
    end Read;
@@ -31,7 +27,7 @@ package body Date.Internal.File_Parser is
       New_String_Pool : String_Pool_Type (1 .. Count);
       Last_End : Integer := 0;
    begin
-      --  read ends
+      --  read ends and calculate lengths
       for I in String_Lengths'Range loop
          declare
             String_End : Integer := Byte_Reader.Read_i32;
@@ -54,29 +50,6 @@ package body Date.Internal.File_Parser is
 
       return New_String_Pool;
    end Read_String_Block;
-
-   procedure Next_String_Pool (String_Pool : in out String_Pool_Type_Access) is
-      procedure Free is new Ada.Unchecked_Deallocation (String_Pool_Type, String_Pool_Type_Access);
-
-      Old_String_Pool : String_Pool_Type (String_Pool'Range);
-      New_String_Pool : String_Pool_Type := Read_String_Block;
-   begin
-      --  copy current string pool
-      for I in String_Pool'Range loop
-         Old_String_Pool (I) := String_Pool (I);
-      end loop;
-
-      Free (String_Pool);
-      String_Pool := new String_Pool_Type (1 .. Old_String_Pool'Length + New_String_Pool'Length);
-
-      declare
-         Copy_String_Pool : String_Pool_Type := Old_String_Pool & New_String_Pool;
-      begin
-         for I in Copy_String_Pool'Range loop
-            String_Pool (I) := Copy_String_Pool (I);
-         end loop;
-      end;
-   end Next_String_Pool;
 
    procedure Read_Type_Block is
    begin
