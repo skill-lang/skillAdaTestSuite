@@ -2,11 +2,10 @@ package body Date.Internal.String_Pool is
 
    String_Pool : String_Pool_Type_Access := new String_Pool_Type (1 .. 0);
 
-   procedure Put (Next_String_Pool : String_Pool_Type) is
+   procedure Put (New_String_Pool : String_Pool_Type) is
       procedure Free is new Ada.Unchecked_Deallocation (String_Pool_Type, String_Pool_Type_Access);
 
       Old_String_Pool : String_Pool_Type (String_Pool'Range);
-      New_String_Pool : String_Pool_Type := Next_String_Pool;
    begin
       --  copy current string pool
       for I in String_Pool'Range loop
