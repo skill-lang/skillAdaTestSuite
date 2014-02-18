@@ -24,8 +24,8 @@ package body Date.Internal.String_Pool is
       end;
    end Put;
 
+   function Get (I : Long) return SU.Unbounded_String is (String_Pool (I));
    function Get (I : Long) return String is (SU.To_String (String_Pool (I)));
-
    function Get_All return String_Pool_Type_Access is (String_Pool);
 
 end Date.Internal.String_Pool;

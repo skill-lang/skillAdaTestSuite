@@ -6,6 +6,7 @@ package Date.Internal.String_Pool is
 
    procedure Put (New_String_Pool : String_Pool_Type);
 
+   function Get (I : Long) return SU.Unbounded_String;
    function Get (I : Long) return String;
    function Get_All return String_Pool_Type_Access;
 
