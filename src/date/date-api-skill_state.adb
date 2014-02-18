@@ -7,14 +7,15 @@ package body Date.Api.Skill_State is
       null;
    end Create;
 
-   procedure Read (File_Name : String) is
+   procedure Read (State : Date.Skill_State; File_Name : String) is
    begin
-      Serializable_State.Read (File_Name);
+--      Ada.Text_IO.Put_Line (State.String_Pool.Length'Img);
+      Serializable_State.Read (State, File_Name);
    end Read;
 
-   procedure Write (File_Name : String) is
+   procedure Write (State : Date.Skill_State; File_Name : String) is
    begin
-      Serializable_State.Write (File_Name);
+      Serializable_State.Write (State, File_Name);
    end Write;
 
 end Date.Api.Skill_State;

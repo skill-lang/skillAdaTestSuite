@@ -1,13 +1,8 @@
-with Ada.Unchecked_Deallocation;
-
 package Date.Internal.String_Pool is
 
-   type String_Pool_Type_Access is access String_Pool_Type;
+   procedure Append (State : Skill_State; Next_String : String);
 
-   procedure Put (New_String_Pool : String_Pool_Type);
-
-   function Get (I : Long) return SU.Unbounded_String;
-   function Get (I : Long) return String;
-   function Get_All return String_Pool_Type_Access;
+   function Get (State : Skill_State; I : Long) return SU.Unbounded_String;
+   function Get (State : Skill_State; I : Long) return String;
 
 end Date.Internal.String_Pool;

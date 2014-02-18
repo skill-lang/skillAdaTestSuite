@@ -1,4 +1,5 @@
 with Ada.Unchecked_Conversion;
+with Interfaces;
 
 package Date.Internal.Byte_Reader is
 
