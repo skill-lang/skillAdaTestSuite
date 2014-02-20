@@ -18,4 +18,15 @@ package body Date.Api.Skill_State is
       Serializable_State.Write (State, File_Name);
    end Write;
 
+   function Get_Dates (State : Date.Skill_State) return Date_Types is
+      Vector : Date_Storage_Pool_Vector.Vector := State.Date_Storage_Pool;
+      rval : Date_Types (Vector.First_Index .. Vector.Last_Index);
+   begin
+      for I in 1 .. Vector.Last_Index loop
+         rval (I) := Vector.Element (I);
+      end loop;
+
+      return rval;
+   end Get_Dates;
+
 end Date.Api.Skill_State;
