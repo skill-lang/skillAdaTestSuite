@@ -140,13 +140,13 @@ package body Date.Internal.File_Parser is
                      case field_declaration.ftype is
                         when 7 =>  --  i8
                            declare
-                              new_node : Node_Type := (id => Byte_Reader.Read_i8);
+                              new_node : Node_Type_Access := new Node_Type'(id => Byte_Reader.Read_i8);
                            begin
                               State.Node_Storage_Pool.Append (new_node);
                            end;
                         when 11 =>  --  v64
                            declare
-                              new_date : Date_Type := (date => Byte_Reader.Read_v64);
+                              new_date : Date_Type_Access := new Date_Type'(date => Byte_Reader.Read_v64);
                            begin
                               State.Date_Storage_Pool.Append (new_date);
                            end;

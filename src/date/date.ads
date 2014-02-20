@@ -2,6 +2,7 @@ with Ada.Containers.Hashed_Maps;
 with Ada.Containers.Vectors;
 with Ada.Strings.Hash;
 with Ada.Strings.Unbounded;
+with Ada.Strings.Unbounded.Hash;
 
 with Ada.Text_IO;
 
@@ -37,6 +38,7 @@ package Date is
       record
          date : Long;
       end record;
+   type Date_Type_Access is access all Date_Type;
 
    type Date_Types is array (Positive range <>) of Date_Type;
 
@@ -44,6 +46,7 @@ package Date is
       record
          id : i8;
       end record;
+   type Node_Type_Access is access all Node_Type;
 
    -------------------
    --  skill state  --
@@ -58,12 +61,12 @@ package Date is
 
    package Date_Storage_Pool_Vector is new Ada.Containers.Vectors (
       Index_Type => Positive,
-      Element_Type => Date_Type
+      Element_Type => Date_Type_Access
    );
 
    package Node_Storage_Pool_Vector is new Ada.Containers.Vectors (
       Index_Type => Positive,
-      Element_Type => Node_Type
+      Element_Type => Node_Type_Access
    );
 
    type Field_Declaration_Type is
@@ -78,9 +81,6 @@ package Date is
       Element_Type => Field_Declaration_Access
    );
 
-   function Equivalent_Keys (Left, Right : SU.Unbounded_String) return Boolean;
-   function Hash (Key: SU.Unbounded_String) return Ada.Containers.Hash_Type;
-
    type Type_Declaration_Type is
       record
          tname : SU.Unbounded_String;
@@ -92,8 +92,8 @@ package Date is
    package Type_Declarations_Hash_Map is new Ada.Containers.Hashed_Maps (
       Key_Type => SU.Unbounded_String,
       Element_Type => Type_Declaration_Access,
-      Hash => Hash,
-      Equivalent_Keys => Equivalent_Keys
+      Hash => Ada.Strings.Unbounded.Hash,
+      Equivalent_Keys => SU."="
    );
 
    type Skill_State_Type is
