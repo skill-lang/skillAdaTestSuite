@@ -6,10 +6,9 @@ with Ada.Text_IO;
 
 package Node is
 
-   ------------
-   --  types --
-   ------------
-
+   -------------
+   --  TYPES  --
+   -------------
    --  Short_Short_Integer
    subtype i8 is Short_Short_Integer'Base range -(2**7) .. +(2**7 - 1);
 
@@ -32,51 +31,61 @@ package Node is
    subtype Double is Long_Float'Base;
    subtype f64 is Double;
 
+   -------------
+   --  SKILL  --
+   -------------
+   type Skill_State is limited private;
+   type Object is abstract tagged null record;
+
+   type Node_Object is new Object with
+      record
+         id : i8;
+      end record;
+
+private
+
    ------------------
    --  STRING POOL --
    ------------------
-   package String_Pool_Vector is new Ada.Containers.Indefinite_Vectors (
-      Index_Type => Positive,
-      Element_Type => String
-   );
+   package String_Pool_Vector is new Ada.Containers.Indefinite_Vectors (Positive, String);
+
+   --------------------
+   --  STORAGE POOL  --
+   --------------------
+   package Storage_Pool_Vector is new Ada.Containers.Indefinite_Vectors (Positive, Object'Class);
 
    --------------------------
    --  FIELD DECLARATIONS  --
    --------------------------
-   type Field_Declaration_Type (Size : Natural) is tagged
+   type Field_Declaration (Length : Natural) is tagged
       record
-         Field_Name : String (1 .. Size);
-         Field_Type : Short_Short_Integer;
+         Name : String (1 .. Length);
+         F_Type : Short_Short_Integer;
       end record;
-   type Field_Declaration_Access is access all Field_Declaration_Type;
+   type Field_Information is access Field_Declaration;
 
-   package Field_Declaration_Vector is new Ada.Containers.Indefinite_Vectors (
-      Index_Type => Positive,
-      Element_Type => Field_Declaration_Access
-   );
+   package Field_Declaration_Vector is new Ada.Containers.Indefinite_Vectors
+      (Index_Type => Positive, Element_Type => Field_Information);
 
    -------------------------
    --  TYPE DECLARATIONS  --
    -------------------------
-   type Type_Declaration_Type (Size : Natural) is
+   type Type_Declaration (Length : Natural) is
       record
-         Type_Name : String (1 .. Size);
-         Type_Super : Long;
-         Type_Fields : Field_Declaration_Vector.Vector;
+         Name : String (1 .. Length);
+         Super : Long;
+         Fields : Field_Declaration_Vector.Vector;
+         Storage : Storage_Pool_Vector.Vector;
       end record;
-   type Type_Declaration_Access is access all Type_Declaration_Type;
+   type Type_Information is access Type_Declaration;
 
-   package Type_Declaration_Hash_Map is new Ada.Containers.Indefinite_Hashed_Maps (
-      Key_Type => String,
-      Element_Type => Type_Declaration_Access,
-      Hash => Ada.Strings.Hash,
-      Equivalent_Keys => "="
-   );
+   package Type_Declaration_Hash_Map is new Ada.Containers.Indefinite_Hashed_Maps
+      (String, Type_Information, Ada.Strings.Hash, "=");
 
-   --------------------------
-   --  SERIALIZABLE STATE  --
-   --------------------------
-   protected type Serializable_State is
+   -------------------
+   --  SKILL STATE  --
+   -------------------
+   protected type Skill_State is  --  Skill_State
 
       --  string pool
       function Get_String (Position : Long) return String;
@@ -90,11 +99,14 @@ package Node is
       function Get_Known_Fields (Name : String) return Long;
       procedure Put_Field_Declaration (Type_Name, Field_Name : String; Field_Type : Short_Short_Integer);
 
+      procedure Put (X : Object'Class);
+
    private
 
       String_Pool : String_Pool_Vector.Vector;
-      Type_Declarations : Type_Declaration_Hash_Map.Map;
+      Storage_Pool : Storage_Pool_Vector.Vector;
+      Types : Type_Declaration_Hash_Map.Map;
 
-   end Serializable_State;
+   end Skill_State;
 
 end Node;

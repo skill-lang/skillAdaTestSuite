@@ -3,7 +3,7 @@ with Node.Internal.Byte_Reader;
 generic
 package Node.Internal.File_Parser is
 
-   procedure Read (pState : access Serializable_State; File_Name : String);
+   procedure Read (pState : access Skill_State; File_Name : String);
 
 private
 

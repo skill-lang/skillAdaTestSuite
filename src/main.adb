@@ -1,5 +1,5 @@
 with Node;
-with Node.Api.Skill_State;
+with Node.Api.Skill;
 
 with Ada.Text_IO;
 
@@ -7,14 +7,15 @@ procedure Main is
    use Node;
    use Node.Api;
 
-   State_1 : access Serializable_State := new Serializable_State;
-   State_2 : access Serializable_State := new Serializable_State;
+   A : access Skill_State := new Skill_State;
+   B : access Node_Object := new Node_Object'(id => 2);
 begin
 
    Ada.Text_IO.Put_Line (" >>> main:");
    Ada.Text_IO.New_Line;
 
---   Skill_State.Read (State_1, "resources/date-example.sf");
-   Skill_State.Read (State_2, "resources/twoNodeBlocks.sf");
+--   Skill.Read (A, "resources/date-example.sf");
+
+   Skill.Read (A, "resources/twoNodeBlocks.sf");
 
 end Main;

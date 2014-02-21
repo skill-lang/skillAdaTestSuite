@@ -2,9 +2,9 @@ package body Node.Internal.File_Parser is
 
    package Byte_Reader renames Node.Internal.Byte_Reader;
 
-   State : access Serializable_State;
+   State : access Skill_State;
 
-   procedure Read (pState : access Serializable_State; File_Name : String) is
+   procedure Read (pState : access Skill_State; File_Name : String) is
       Input_File : ASS_IO.File_Type;
    begin
       State := pState;
