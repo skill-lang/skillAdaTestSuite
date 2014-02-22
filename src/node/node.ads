@@ -57,55 +57,72 @@ private
    --------------------------
    --  FIELD DECLARATIONS  --
    --------------------------
-   type Field_Declaration (Length : Natural) is tagged
+   type Field_Declaration (Size : Positive) is tagged
       record
-         Name : String (1 .. Length);
+         Name : String (1 .. Size);
          F_Type : Short_Short_Integer;
       end record;
    type Field_Information is access Field_Declaration;
 
-   package Field_Declaration_Vector is new Ada.Containers.Indefinite_Vectors
+   package Fields_Vector is new Ada.Containers.Indefinite_Vectors
       (Index_Type => Positive, Element_Type => Field_Information);
 
    -------------------------
    --  TYPE DECLARATIONS  --
    -------------------------
-   type Type_Declaration (Length : Natural) is
+   type Type_Declaration (Size : Positive) is
       record
-         Name : String (1 .. Length);
-         Super : Long;
-         Fields : Field_Declaration_Vector.Vector;
-         Storage : Storage_Pool_Vector.Vector;
+         Name : String (1 .. Size);
+         Super_Name : Long;
+         Fields : Fields_Vector.Vector;
+         Storage_Pool : Storage_Pool_Vector.Vector;
       end record;
    type Type_Information is access Type_Declaration;
 
-   package Type_Declaration_Hash_Map is new Ada.Containers.Indefinite_Hashed_Maps
+   package Types_Hash_Map is new Ada.Containers.Indefinite_Hashed_Maps
       (String, Type_Information, Ada.Strings.Hash, "=");
+
+   ------------------
+   --  DATA CHUNKS --
+   ------------------
+   type Data_Chunk (Size : Positive) is record
+      Type_Name : String (1 .. Size);
+      Instances_Count : Long;
+      Data_Length : Long;
+      BPSI : Long;
+   end record;
+
+   package Data_Chunk_Vector is new Ada.Containers.Indefinite_Vectors (Positive, Data_Chunk);
+   Data_Chunks : Data_Chunk_Vector.Vector;
 
    -------------------
    --  SKILL STATE  --
    -------------------
-   protected type Skill_State is  --  Skill_State
+   protected type Skill_State is
 
       --  string pool
       function Get_String (Position : Long) return String;
       procedure Put_String (Value : String);
 
-      --  type declarations
-      function Has_Type_Declaration (Value : String) return Boolean;
-      procedure Put_Type_Declaration (Name : String; Super : Long);
+      --  storage pool
+      function Get (Type_Name : String; Position : Positive) return Object'Class;
+      function Length (Type_Name : String) return Natural;
+      procedure Put (Type_Name : String; New_Object : Object'Class);
 
       --  field declarations
-      function Get_Known_Fields (Name : String) return Long;
-      procedure Put_Field_Declaration (Type_Name, Field_Name : String; Field_Type : Short_Short_Integer);
+      function Known_Fields (Name : String) return Long;
+      function Get_Field (Type_Name : String; Position : Long) return Field_Information;
+      procedure Put_Field (Type_Name : String; New_Field : Field_Information);
 
-      procedure Put (X : Object'Class);
+      --  type declarations
+      function Has_Type (Name : String) return Boolean;
+      function Get_Type (Name : String) return Type_Information;
+      procedure Put_Type (New_Type : Type_Information);
 
    private
 
       String_Pool : String_Pool_Vector.Vector;
-      Storage_Pool : Storage_Pool_Vector.Vector;
-      Types : Type_Declaration_Hash_Map.Map;
+      Types : Types_Hash_Map.Map;
 
    end Skill_State;
 

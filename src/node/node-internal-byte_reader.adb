@@ -79,16 +79,16 @@ package body Node.Internal.Byte_Reader is
    end Read_v64;
 
    function Read_f32 return f32 is
-      Unsupported_Type : exception;
+      Skill_Unsupported_Type : exception;
    begin
-      raise Unsupported_Type;
+      raise Skill_Unsupported_Type;
       return 0.0;
    end Read_f32;
 
    function Read_f64 return f64 is
-      Unsupported_Type : exception;
+      Skill_Unsupported_Type : exception;
    begin
-      raise Unsupported_Type;
+      raise Skill_Unsupported_Type;
       return 0.0;
    end Read_f64;
 
@@ -110,5 +110,16 @@ package body Node.Internal.Byte_Reader is
       end loop;
       return New_String;
    end Read_String;
+
+   procedure Skip_Bytes (Length : Long) is
+   begin
+      for I in 1 .. Length loop
+         declare
+            Skip : Byte := Read_Byte;
+         begin
+            null;
+         end;
+      end loop;
+   end Skip_Bytes;
 
 end Node.Internal.Byte_Reader;

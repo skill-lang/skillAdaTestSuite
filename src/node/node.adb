@@ -6,50 +6,69 @@ package body Node is
       --  STRING POOL  --
       -------------------
       function Get_String (Position : Long) return String is
-      begin
-         return String_Pool.Element (Positive (Position));
-      end Get_String;
+         (String_Pool.Element (Positive (Position)));
 
       procedure Put_String (Value : String) is
       begin
          String_Pool.Append (Value);
       end Put_String;
 
-      --------------------------
-      --  TYPES DECLARATIONS  --
-      --------------------------
-      function Has_Type_Declaration (Value : String) return Boolean is
+      --------------------
+      --  STORAGE_POOL  --
+      --------------------
+      function Get (Type_Name : String; Position : Positive) return Object'Class is
+         A_Type : Type_Information := Get_Type (Type_Name);
       begin
-         return Types.Contains (Value);
-      end Has_Type_Declaration;
+         return A_Type.Storage_Pool.Element (Position);
+      end Get;
 
-      procedure Put_Type_Declaration (Name : String; Super : Long) is
-         Fields : Field_Declaration_Vector.Vector;
-         Storage : Storage_Pool_Vector.Vector;
-         X : Type_Information := new Type_Declaration'(Name'Length, Name, Super, Fields, Storage);
+      function Length (Type_Name : String) return Natural is
+         A_Type : Type_Information := Get_Type (Type_Name);
       begin
-         Types.Insert (Name, X);
-      end Put_Type_Declaration;
+         return Natural (A_Type.Storage_Pool.Length);
+      end;
+
+      procedure Put (Type_Name : String; New_Object : Object'Class) is
+         A_Type : Type_Information := Get_Type (Type_Name);
+      begin
+         A_Type.Storage_Pool.Append (New_Object);
+      end Put;
 
       --------------------------
       --  FIELD DECLARATIONS  --
       --------------------------
-      function Get_Known_Fields (Name : String) return Long is
-      begin
-         return Long (Types.Element (Name).Fields.Length);
-      end Get_Known_Fields;
+      function Known_Fields (Name : String) return Long is
+         (Long (Types.Element (Name).Fields.Length));
 
-      procedure Put_Field_Declaration (Type_Name, Field_Name : String; Field_Type : Short_Short_Integer) is
-         X : Field_Information := new Field_Declaration'(Field_Name'Length, Field_Name, Field_Type);
+      function Get_Field (Type_Name : String; Position : Long) return Field_Information is
+         X : Type_Information := Get_Type (Type_Name);
+      begin
+         return X.Fields.Element (Positive (Position));
+      end Get_Field;
+
+      procedure Put_Field (Type_Name : String; New_Field : Field_Information) is
          Type_Declaration : Type_Information := Types.Element (Type_Name);
       begin
-         Type_Declaration.Fields.Append (X);
-      end Put_Field_Declaration;
+         Type_Declaration.Fields.Append (New_Field);
+      end Put_Field;
 
-      procedure Put (X : Object'Class) is
+      --------------------------
+      --  TYPES DECLARATIONS  --
+      --------------------------
+      function Has_Type (Name : String) return Boolean is
       begin
-         Storage_Pool.Append (New_Item => X);
-      end Put;
+         return Types.Contains (Name);
+      end Has_Type;
+
+      function Get_Type (Name : String) return Type_Information is
+      begin
+         return Types.Element (Name);
+      end Get_Type;
+
+      procedure Put_Type (New_Type : Type_Information) is
+      begin
+         Types.Insert (New_Type.Name, New_Type);
+      end Put_Type;
 
    end Skill_State;
 

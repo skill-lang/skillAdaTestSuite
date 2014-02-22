@@ -113,15 +113,15 @@ package body Node.Internal.Byte_Writer is
    end Get_v64_Bytes;
 
    procedure Write_f32 (Value : f32) is
-      Unsupported_Type : exception;
+      Skill_Unsupported_Type : exception;
    begin
-      raise Unsupported_Type;
+      raise Skill_Unsupported_Type;
    end Write_f32;
 
    procedure Write_f64 (Value : f64) is
-      Unsupported_Type : exception;
+      Skill_Unsupported_Type : exception;
    begin
-      raise Unsupported_Type;
+      raise Skill_Unsupported_Type;
    end Write_f64;
 
    procedure Write_Boolean (Value : Boolean) is

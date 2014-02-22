@@ -13,4 +13,7 @@ private
    procedure Read_Field_Declaration (Type_Name : String);
    procedure Read_Field_Data;
 
+   procedure Data_Chunk_Vector_Iterator (Iterator : Data_Chunk_Vector.Cursor);
+   procedure Skip_Restrictions;
+
 end Node.Internal.File_Parser;

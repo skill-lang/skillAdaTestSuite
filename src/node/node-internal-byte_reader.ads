@@ -18,6 +18,8 @@ package Node.Internal.Byte_Reader is
    function Read_Boolean return Boolean;
    function Read_String (Length : Integer) return String;
 
+   procedure Skip_Bytes (Length : Long);
+
 private
 
    function Read_Byte return Byte;
