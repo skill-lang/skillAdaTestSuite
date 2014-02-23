@@ -1,5 +1,4 @@
 with Ada.Unchecked_Conversion;
-with Interfaces;
 
 package Node.Internal.Byte_Reader is
 

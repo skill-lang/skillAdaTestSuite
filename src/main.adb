@@ -9,7 +9,7 @@ procedure Main is
    use Skill;
 
    State : access Skill_State := new Skill_State;
-   New_Object : Node_Object := (id => 2);
+   Object : Node_Instance := (id => 2);
 begin
 
    Ada.Text_IO.Put_Line (" >>> main:");
@@ -17,10 +17,15 @@ begin
 
 --   Skill.Read (State, "resources/date-example.sf");
 
-   Skill.Read (State, "resources/twoNodeBlocks.sf");
+   declare
+      File_Name : String := "resources/twoNodeBlocks.sf";
+   begin
+      Ada.Text_IO.Put_Line (File_Name);
+      Skill.Read (State, File_Name);
+   end;
 
    declare
-      X : Node_Objects := Skill.Get_Nodes (State);
+      X : Node_Instances := Skill.Get_Nodes (State);
    begin
       for I in X'Range loop
          Ada.Text_IO.Put_Line (X (I).id'Img);

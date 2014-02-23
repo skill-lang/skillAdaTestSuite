@@ -35,9 +35,9 @@ package Node is
    --  SKILL  --
    -------------
    type Skill_State is limited private;
-   type Object is abstract tagged null record;
+   type Instance is abstract tagged null record;
 
-   type Node_Object is new Object with
+   type Node_Instance is new Instance with
       record
          id : i8;
       end record;
@@ -52,7 +52,7 @@ private
    --------------------
    --  STORAGE POOL  --
    --------------------
-   package Storage_Pool_Vector is new Ada.Containers.Indefinite_Vectors (Positive, Object'Class);
+   package Storage_Pool_Vector is new Ada.Containers.Indefinite_Vectors (Positive, Instance'Class);
 
    --------------------------
    --  FIELD DECLARATIONS  --
@@ -85,11 +85,13 @@ private
    ------------------
    --  DATA CHUNKS --
    ------------------
-   type Data_Chunk (Size : Positive) is record
-      Type_Name : String (1 .. Size);
-      Instances_Count : Long;
+   type Data_Chunk (Type_Size, Field_Size : Positive) is record
+      Type_Name : String (1 .. Type_Size);
+      Start_Index : Natural;
+      End_Index : Natural;
+      Field_Name : String (1 .. Field_Size);
+      Field_Type : Short_Short_Integer;
       Data_Length : Long;
-      BPSI : Long;
    end record;
 
    package Data_Chunk_Vector is new Ada.Containers.Indefinite_Vectors (Positive, Data_Chunk);
@@ -105,9 +107,10 @@ private
       procedure Put_String (Value : String);
 
       --  storage pool
-      function Get (Type_Name : String; Position : Positive) return Object'Class;
-      function Length (Type_Name : String) return Natural;
-      procedure Put (Type_Name : String; New_Object : Object'Class);
+      function Get_Instance (Type_Name : String; Position : Positive) return Instance'Class;
+      function Storage_Size (Type_Name : String) return Natural;
+      procedure Put_Instance (Type_Name : String; New_Instance : Instance'Class);
+      procedure Replace_Instance (Type_Name : String; Position : Positive; New_Instance : Instance'Class);
 
       --  field declarations
       function Known_Fields (Name : String) return Long;

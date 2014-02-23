@@ -16,23 +16,29 @@ package body Node is
       --------------------
       --  STORAGE_POOL  --
       --------------------
-      function Get (Type_Name : String; Position : Positive) return Object'Class is
+      function Get_Instance (Type_Name : String; Position : Positive) return Instance'Class is
          A_Type : Type_Information := Get_Type (Type_Name);
       begin
          return A_Type.Storage_Pool.Element (Position);
-      end Get;
+      end Get_Instance;
 
-      function Length (Type_Name : String) return Natural is
+      function Storage_Size (Type_Name : String) return Natural is
          A_Type : Type_Information := Get_Type (Type_Name);
       begin
          return Natural (A_Type.Storage_Pool.Length);
       end;
 
-      procedure Put (Type_Name : String; New_Object : Object'Class) is
+      procedure Put_Instance (Type_Name : String; New_Instance : Instance'Class) is
          A_Type : Type_Information := Get_Type (Type_Name);
       begin
-         A_Type.Storage_Pool.Append (New_Object);
-      end Put;
+         A_Type.Storage_Pool.Append (New_Instance);
+      end Put_Instance;
+
+      procedure Replace_Instance (Type_Name : String; Position : Positive; New_Instance : Instance'Class) is
+         A_Type : Type_Information := Get_Type (Type_Name);
+      begin
+         A_Type.Storage_Pool.Replace_Element (Position, New_Instance);
+      end Replace_Instance;
 
       --------------------------
       --  FIELD DECLARATIONS  --
@@ -61,7 +67,11 @@ package body Node is
       end Has_Type;
 
       function Get_Type (Name : String) return Type_Information is
+         Skill_Unexcepted_Type_Name : exception;
       begin
+         if not Has_Type (Name) then
+            raise Skill_Unexcepted_Type_Name;
+         end if;
          return Types.Element (Name);
       end Get_Type;
 

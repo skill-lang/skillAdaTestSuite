@@ -12,8 +12,6 @@ package body Node.Internal.File_Parser is
       ASS_IO.Open (Input_File, ASS_IO.In_File, File_Name);
       Byte_Reader.Initialize (ASS_IO.Stream (Input_File));
 
-      Ada.Text_IO.Put_Line (File_Name);
-
       while (not ASS_IO.End_Of_File (Input_File)) loop
          Read_String_Block;
          Read_Type_Block;
@@ -61,11 +59,12 @@ package body Node.Internal.File_Parser is
 
    procedure Read_Type_Declaration is
       Type_Name : String := State.Get_String (Byte_Reader.Read_v64);
-      Instances_Count : Long;
+      Instance_Count : Long;
+      Field_Count : Long;
 
       Skill_Unsupported_File_Format : exception;
    begin
-      if (not State.Has_Type (Type_Name)) then
+      if not State.Has_Type (Type_Name) then
          declare
             Type_Super : Long := Byte_Reader.Read_v64;
 
@@ -77,20 +76,25 @@ package body Node.Internal.File_Parser is
             State.Put_Type (New_Type);
          end;
 
-         Instances_Count := Byte_Reader.Read_v64;
+         Instance_Count := Byte_Reader.Read_v64;
          Skip_Restrictions;
       else
-         Instances_Count := Byte_Reader.Read_v64;
+         Instance_Count := Byte_Reader.Read_v64;
       end if;
 
-      if 0 = Instances_Count then
+      Field_Count := Byte_Reader.Read_v64;
+
+      if 0 = Instance_Count then
          raise Skill_Unsupported_File_Format;
       else
          declare
-            Field_Count : Long := Byte_Reader.Read_v64;
             Known_Fields : Long := State.Known_Fields (Type_Name);
             Last_Offset : Long := 0;
+            Start_Index : Natural := State.Storage_Size (Type_Name) + 1;
+            End_Index : Natural := Start_Index + Natural (Instance_Count) - 1;
          begin
+            Create_Instances (Type_Name, Instance_Count);
+
             for I in 1 .. Field_Count loop
                if Field_Count > Known_Fields then
                   Read_Field_Declaration (Type_Name);
@@ -100,7 +104,8 @@ package body Node.Internal.File_Parser is
                   Offset : Long := Byte_Reader.Read_v64;
                   Data_Length : Long := Offset - Last_Offset;
                   Field : Field_Information := State.Get_Field (Type_Name, I);
-                  Chunk : Data_Chunk (Type_Name'Length) := (Type_Name'Length, Type_Name, Instances_Count, Data_Length, 1);
+                  Chunk : Data_Chunk (Type_Name'Length, Field.Name'Length) :=
+                     (Type_Name'Length, Field.Name'Length, Type_Name, Start_Index, End_Index, Field.Name, Field.F_Type, Data_Length);
                begin
                   Last_Offset := Offset;
                   Data_Chunks.Append (Chunk);
@@ -130,59 +135,38 @@ package body Node.Internal.File_Parser is
       Data_Chunks.Clear;
    end Read_Field_Data;
 
-   procedure Data_Chunk_Vector_Iterator (Iterator : Data_Chunk_Vector.Cursor) is
-      type Type_Names is (node);
-      function Convert (X : String) return Type_Names is
-         Skill_Unexpected_Type_Name : exception;
-      begin
-         if "node" = X then
-            return node;
-         end if;
-
-         raise Skill_Unexpected_Type_Name;
-      end Convert;
-
-      type Field_Names is (id);
-      function Convert (X : String) return Field_Names is
-         Skill_Unexpected_Field_Name : exception;
-      begin
-         if "id" = X then
-            return id;
-         end if;
-
-         raise Skill_Unexpected_Field_Name;
-      end Convert;
-
-      Chunk : Data_Chunk := Data_Chunk_Vector.Element (Iterator);
-      A_Type : Type_Information := State.Get_Type (Chunk.Type_Name);
-      Type_Name : Type_Names := Convert (Chunk.Type_Name);
-
-      type id_Type is array (1 .. Chunk.Instances_Count) of i8;
-      ids : id_Type;
+   procedure Create_Instances (Type_Name : String; Instance_Count : Long) is
    begin
-      Exit_Loop:
-      for I in 1 .. Chunk.Instances_Count loop
-         for J in 1 .. State.Known_Fields (Chunk.Type_Name) loop
+      if "node" = Type_Name then
+         for I in 1 .. Instance_Count loop
             declare
-               Field_Name : Field_Names := Convert (State.Get_Field (Chunk.Type_Name, J).Name);
+               Object : Node_Instance := (id => 0);
             begin
-               case Type_Name is
-                  when node =>
-                     case Field_Name is
-                        when id => ids (I) := Byte_Reader.Read_i8;
-                        when others => null;
-                     end case;
-                  when others => Byte_Reader.Skip_Bytes (Chunk.Data_Length); exit Exit_Loop;
-               end case;
+               State.Put_Instance (Type_Name, Object);
             end;
          end loop;
+      end if;
+   end Create_Instances;
 
-         declare
-            New_Node : Node_Object := (id => ids (I));
-         begin
-            State.Put (Chunk.Type_Name, New_Node);
-         end;
-      end loop Exit_Loop;
+   procedure Data_Chunk_Vector_Iterator (Iterator : Data_Chunk_Vector.Cursor) is
+      Chunk : Data_Chunk := Data_Chunk_Vector.Element (Iterator);
+      Skip_Bytes : Boolean := True;
+   begin
+      if "node" = Chunk.Type_Name and then "id" = Chunk.Field_Name then
+         for I in Chunk.Start_Index .. Chunk.End_Index loop
+            declare
+               Object : Node_Instance := Node_Instance (State.Get_Instance (Chunk.Type_Name, I));
+            begin
+               Object.id := Byte_Reader.Read_i8;
+               State.Replace_Instance (Chunk.Type_Name, I, Object);
+            end;
+         end loop;
+         Skip_Bytes := False;
+      end if;
+
+      if True = Skip_Bytes then
+         Byte_Reader.Skip_Bytes (Chunk.Data_Length);
+      end if;
    end Data_Chunk_Vector_Iterator;
 
    procedure Skip_Restrictions is
