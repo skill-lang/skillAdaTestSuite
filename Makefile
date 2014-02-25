@@ -14,5 +14,4 @@ check: build_tests
 	./tester -c
 
 clean:
-	gprclean gnat/skill.gpr
 	gprclean $(LIB_AHVEN) gnat/skill_tests.gpr
