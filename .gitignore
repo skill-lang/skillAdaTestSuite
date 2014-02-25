@@ -1,6 +1,7 @@
 # ada
 main
 tester
+src/**
 
 # sublime text 2
 *.sublime-workspace
