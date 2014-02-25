@@ -1,5 +1,4 @@
 with Ada.Unchecked_Conversion;
-with Ada.Text_IO;
 
 package Node.Internal.Byte_Writer is
 
