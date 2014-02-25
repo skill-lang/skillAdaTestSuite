@@ -7,10 +7,10 @@ package body Node.Test.Parse is
    procedure Initialize (T : in out Test) is
    begin
       Set_Name (T, "Node.Test.Parse");
-      Ahven.Framework.Add_Test_Routine (T, Node_1'Access, "1: id = 23");
-      Ahven.Framework.Add_Test_Routine (T, Node_2'Access, "2: id = 42");
-      Ahven.Framework.Add_Test_Routine (T, Node_3'Access, "3: id = -1");
-      Ahven.Framework.Add_Test_Routine (T, Node_4'Access, "4: id = 2");
+      Ahven.Framework.Add_Test_Routine (T, Node_1'Access, "1. node: id = 23");
+      Ahven.Framework.Add_Test_Routine (T, Node_2'Access, "2. node: id = 42");
+      Ahven.Framework.Add_Test_Routine (T, Node_3'Access, "3. node: id = -1");
+      Ahven.Framework.Add_Test_Routine (T, Node_4'Access, "4. node: id = 2");
 
       Skill.Read (T.State, "resources/twoNodeBlocks.sf");
    end Initialize;

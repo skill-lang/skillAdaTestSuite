@@ -12,7 +12,7 @@ package body Aircraft.Test.Parse is
       Ahven.Framework.Add_Test_Routine (T, Helicopter_1'Access, "helicopter 1: 1, Bell 206, false");
       Ahven.Framework.Add_Test_Routine (T, Helicopter_1'Access, "helicopter 2: 2, Sikorsky S-76C+, true");
 
-      Skill.Read (T.State, "resources/airplane.sf");
+      Skill.Read (T.State, "resources/aircraft.sf");
    end Initialize;
 
    procedure Airplane_1 (T : in out Ahven.Framework.Test_Case'Class) is
@@ -20,6 +20,7 @@ package body Aircraft.Test.Parse is
 
       X : Airplane_Instances := Skill.Get_Airplanes (Test (T).State);
    begin
+      Ahven.Assert (X (1).x = 42, "'first airplane'.x is not 42.");
       Ahven.Assert (X (1).id = 1, "'first airplane'.id is not 1.");
       Ahven.Assert (X (1).name = "Fokker 100", "'first airplane'.name is not 'Fokker 100'.");
       Ahven.Assert (X (1).operational = True, "'first airplane'.operational is not true.");
@@ -30,6 +31,7 @@ package body Aircraft.Test.Parse is
 
       X : Airplane_Instances := Skill.Get_Airplanes (Test (T).State);
    begin
+      Ahven.Assert (X (2).x = 42, "'second airplane'.x is not 42.");
       Ahven.Assert (X (2).id = 2, "'second airplane'.id is not 2.");
       Ahven.Assert (X (2).name = "Bombardier Dash 8", "'second airplane'.name is not 'Bombardier Dash 8'.");
       Ahven.Assert (X (2).operational = False, "'second airplane'.operational is not false.");
