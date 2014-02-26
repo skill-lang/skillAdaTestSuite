@@ -3,6 +3,8 @@ with Ahven.Text_Runner;
 
 with Aircraft.Test.Parse;
 
+with Annotation.Test.Parse;
+
 with Date.Test.Byte_Checker_i8;
 with Date.Test.Byte_Checker_i16;
 with Date.Test.Byte_Checker_i32;
@@ -18,6 +20,8 @@ procedure Tester is
    Suite : Ahven.Framework.Test_Suite := Ahven.Framework.Create_Suite ("All");
 begin
    Ahven.Framework.Add_Test (Suite, new Aircraft.Test.Parse.Test);
+
+   Ahven.Framework.Add_Test (Suite, new Annotation.Test.Parse.Test);
 
    Ahven.Framework.Add_Test (Suite, new Date.Test.Byte_Checker_i8.Test);
    Ahven.Framework.Add_Test (Suite, new Date.Test.Byte_Checker_i16.Test);

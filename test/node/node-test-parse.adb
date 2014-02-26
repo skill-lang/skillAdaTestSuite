@@ -16,25 +16,25 @@ package body Node.Test.Parse is
    end Initialize;
 
    procedure Node_1 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Node_Instances := Skill.Get_Nodes (Test (T).State);
+      X : Node_Type_Accesses := Skill.Get_Nodes (Test (T).State);
    begin
       Ahven.Assert (X (1).id = 23, "'first node'.id is not 23.");
    end Node_1;
 
    procedure Node_2 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Node_Instances := Skill.Get_Nodes (Test (T).State);
+      X : Node_Type_Accesses := Skill.Get_Nodes (Test (T).State);
    begin
       Ahven.Assert (X (2).id = 42, "'second node'.id is not 42.");
    end Node_2;
 
    procedure Node_3 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Node_Instances := Skill.Get_Nodes (Test (T).State);
+      X : Node_Type_Accesses := Skill.Get_Nodes (Test (T).State);
    begin
       Ahven.Assert (X (3).id = -1, "'third node'.id is not -1.");
    end Node_3;
 
    procedure Node_4 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Node_Instances := Skill.Get_Nodes (Test (T).State);
+      X : Node_Type_Accesses := Skill.Get_Nodes (Test (T).State);
    begin
       Ahven.Assert (X (4).id = 2, "'fourth node'.id is not 2.");
    end Node_4;
