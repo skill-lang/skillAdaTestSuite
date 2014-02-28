@@ -16,6 +16,10 @@ with Date.Test.Parse;
 
 with Node.Test.Parse;
 
+with Subtypes.Test.Parse;
+
+with Unknown.Test.Parse;
+
 procedure Tester is
    Suite : Ahven.Framework.Test_Suite := Ahven.Framework.Create_Suite ("All");
 begin
@@ -33,6 +37,10 @@ begin
    Ahven.Framework.Add_Test (Suite, new Date.Test.Parse.Test);
 
    Ahven.Framework.Add_Test (Suite, new Node.Test.Parse.Test);
+
+   Ahven.Framework.Add_Test (Suite, new Subtypes.Test.Parse.Test);
+
+   Ahven.Framework.Add_Test (Suite, new Unknown.Test.Parse.Test);
 
    Ahven.Text_Runner.Run (Suite);
 end Tester;
