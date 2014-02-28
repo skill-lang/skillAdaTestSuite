@@ -14,6 +14,8 @@ with Date.Test.Byte_Checker_Boolean;
 with Date.Test.Byte_Checker_String;
 with Date.Test.Parse;
 
+with Foreign.Test.Parse;
+
 with Node.Test.Parse;
 
 with Subtypes.Test.Parse;
@@ -35,6 +37,8 @@ begin
    Ahven.Framework.Add_Test (Suite, new Date.Test.Byte_Checker_Boolean.Test);
    Ahven.Framework.Add_Test (Suite, new Date.Test.Byte_Checker_String.Test);
    Ahven.Framework.Add_Test (Suite, new Date.Test.Parse.Test);
+
+   Ahven.Framework.Add_Test (Suite, new Foreign.Test.Parse.Test);
 
    Ahven.Framework.Add_Test (Suite, new Node.Test.Parse.Test);
 
