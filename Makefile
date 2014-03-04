@@ -4,7 +4,7 @@
 
 LIB_AHVEN="-aPlib/ahven/lib/gnat"
 
-main: clean
+main:
 	gprbuild gnat/skill.gpr
 
 build_tests:
