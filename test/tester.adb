@@ -3,6 +3,7 @@ with Ahven.Text_Runner;
 
 with Test_Aircraft.Parse;
 with Test_Annotation.Parse;
+with Test_Colored_Nodes.Parse;
 with Test_Date.Parse;
 with Test_Foreign.Parse;
 with Test_Node.Parse;
@@ -14,6 +15,7 @@ procedure Tester is
 begin
    Ahven.Framework.Add_Test (Suite, new Test_Aircraft.Parse.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Annotation.Parse.Test);
+   Ahven.Framework.Add_Test (Suite, new Test_Colored_Nodes.Parse.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Date.Parse.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Foreign.Parse.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Node.Parse.Test);
