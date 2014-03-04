@@ -1,11 +1,11 @@
-with Ada.Characters.Handling;
-with Ada.Strings.Fixed;
-with Ada.Tags;
 with Ahven.Framework;
-with Unknown;
 with Unknown.Api.Skill;
 
 package Test_Foreign.Parse is
+
+   package Skill renames Unknown.Api.Skill;
+   use Unknown;
+   use Skill;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 
@@ -13,6 +13,7 @@ package Test_Foreign.Parse is
 
    procedure Aircraft;
    procedure Annotation_Test;
+   procedure Colored_Nodes;
    procedure Constant_Maybe_Wrong;
    procedure Container;
    procedure Date_Example;

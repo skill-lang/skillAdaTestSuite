@@ -1,14 +1,11 @@
 package body Test_Foreign.Parse is
 
-   package Skill renames Unknown.Api.Skill;
-   use Unknown;
-   use Skill;
-
    procedure Initialize (T : in out Test) is
    begin
       Set_Name (T, "Test_Foreign.Parse");
       Ahven.Framework.Add_Test_Routine (T, Aircraft'Access, "aircraft.sf");
       Ahven.Framework.Add_Test_Routine (T, Annotation_Test'Access, "annotationTest.sf");
+      Ahven.Framework.Add_Test_Routine (T, Colored_Nodes'Access, "coloredNodes.sf");
       Ahven.Framework.Add_Test_Routine (T, Constant_Maybe_Wrong'Access, "constant.sf");
       Ahven.Framework.Add_Test_Routine (T, Container'Access, "container.sf");
       Ahven.Framework.Add_Test_Routine (T, Date_Example'Access, "date-example.sf");
@@ -28,6 +25,12 @@ package body Test_Foreign.Parse is
    begin
       Skill.Read (State, "resources/annotationTest.sf");
    end Annotation_Test;
+
+   procedure Colored_Nodes is
+      State : access Skill_State := new Skill_State;
+   begin
+      Skill.Read (State, "resources/coloredNodes.sf");
+   end Colored_Nodes;
 
    procedure Constant_Maybe_Wrong is
       State : access Skill_State := new Skill_State;
