@@ -17,7 +17,8 @@ package body Test_Subtypes.Parse is
       use Ada.Strings.Fixed;
       use Ada.Tags;
 
-      X : A_Type_Accesses := Skill.Get_As (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : A_Type_Accesses := Skill.Get_As (State);
       Types : constant String := "aabbbcbbddacd";
    begin
       for I in Types'Range loop
@@ -32,7 +33,8 @@ package body Test_Subtypes.Parse is
    procedure Check_Fields_A (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Fixed;
 
-      X : A_Type_Accesses := Skill.Get_As (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : A_Type_Accesses := Skill.Get_As (State);
    begin
       for I in X'Range loop
          Ahven.Assert (X (I) = X (I).Get_A, "index " & Trim (I'Img, Ada.Strings.Left));
@@ -42,7 +44,8 @@ package body Test_Subtypes.Parse is
    procedure Check_Fields_B (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Fixed;
 
-      X : B_Type_Accesses := Skill.Get_Bs (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : B_Type_Accesses := Skill.Get_Bs (State);
    begin
       for I in X'Range loop
          Ahven.Assert (X (I) = X (I).Get_B, "index " & Trim (I'Img, Ada.Strings.Left));
@@ -52,7 +55,8 @@ package body Test_Subtypes.Parse is
    procedure Check_Fields_C (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Fixed;
 
-      X : C_Type_Accesses := Skill.Get_Cs (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : C_Type_Accesses := Skill.Get_Cs (State);
    begin
       for I in X'Range loop
          Ahven.Assert (X (I) = X (I).Get_C, "index " & Trim (I'Img, Ada.Strings.Left));
@@ -62,7 +66,8 @@ package body Test_Subtypes.Parse is
    procedure Check_Fields_D (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Fixed;
 
-      X : D_Type_Accesses := Skill.Get_Ds (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : D_Type_Accesses := Skill.Get_Ds (State);
    begin
       for I in X'Range loop
          Ahven.Assert (X (I) = X (I).Get_D, "index " & Trim (I'Img, Ada.Strings.Left));

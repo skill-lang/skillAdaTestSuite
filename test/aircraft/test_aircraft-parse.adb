@@ -14,7 +14,8 @@ package body Test_Aircraft.Parse is
    procedure Airplane_1 (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Unbounded;
 
-      X : Airplane_Type_Accesses := Skill.Get_Airplanes (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Airplane_Type_Accesses := Skill.Get_Airplanes (State);
    begin
       Ahven.Assert (X (1).Get_X = 42, "'first airplane'.Get_X is not 42.");
       Ahven.Assert (X (1).Get_Id = 1, "'first airplane'.Get_Id is not 1.");
@@ -25,7 +26,8 @@ package body Test_Aircraft.Parse is
    procedure Airplane_2 (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Unbounded;
 
-      X : Airplane_Type_Accesses := Skill.Get_Airplanes (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Airplane_Type_Accesses := Skill.Get_Airplanes (State);
    begin
       Ahven.Assert (X (2).Get_X = 42, "'second airplane'.Get_X is not 42.");
       Ahven.Assert (X (2).Get_Id = 2, "'second airplane'.Get_Id is not 2.");
@@ -36,7 +38,8 @@ package body Test_Aircraft.Parse is
    procedure Helicopter_1 (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Unbounded;
 
-      X : Helicopter_Type_Accesses := Skill.Get_Helicopters (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Helicopter_Type_Accesses := Skill.Get_Helicopters (State);
    begin
       Ahven.Assert (X (1).Get_Id = 1, "'first helicopter'.Get_Id is not 1.");
       Ahven.Assert (X (1).Get_Name = "Bell 206", "'first helicopter'.Get_Name is not 'Bell 206'.");
@@ -46,7 +49,8 @@ package body Test_Aircraft.Parse is
    procedure Helicopter_2 (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Unbounded;
 
-      X : Helicopter_Type_Accesses := Skill.Get_Helicopters (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Helicopter_Type_Accesses := Skill.Get_Helicopters (State);
    begin
       Ahven.Assert (X (2).Get_Id = 2, "'first helicopter'.Get_Id is not 2.");
       Ahven.Assert (X (2).Get_Name = "Sikorsky S-76C+", "'first helicopter'.Get_Name is not 'Sikorsky S-76C+'.");

@@ -15,7 +15,8 @@ package body Test_Unknown.Parse is
       use Ada.Strings.Fixed;
       use Ada.Tags;
 
-      X : A_Type_Accesses := Skill.Get_As (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : A_Type_Accesses := Skill.Get_As (State);
       Types : constant String := "aaaaacaaaaaca";
    begin
       for I in Types'Range loop
@@ -31,7 +32,8 @@ package body Test_Unknown.Parse is
    procedure Check_Fields_A (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Fixed;
 
-      X : A_Type_Accesses := Skill.Get_As (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : A_Type_Accesses := Skill.Get_As (State);
    begin
       for I in X'Range loop
          Ahven.Assert (X (I) = X (I).Get_A, "index " & Trim (I'Img, Ada.Strings.Left));
@@ -41,7 +43,8 @@ package body Test_Unknown.Parse is
    procedure Check_Fields_C (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Fixed;
 
-      X : C_Type_Accesses := Skill.Get_Cs (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : C_Type_Accesses := Skill.Get_Cs (State);
    begin
       for I in X'Range loop
          Ahven.Assert (X (I) = X (I).Get_C, "index " & Trim (I'Img, Ada.Strings.Left));

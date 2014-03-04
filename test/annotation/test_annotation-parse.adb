@@ -11,8 +11,9 @@ package body Test_Annotation.Parse is
    end Initialize;
 
    procedure Check_Annotation (T : in out Ahven.Framework.Test_Case'Class) is
-      Tests : Test_Type_Accesses := Skill.Get_Tests (Test (T).State);
-      Dates : Date_Type_Accesses := Skill.Get_Dates (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      Tests : Test_Type_Accesses := Skill.Get_Tests (State);
+      Dates : Date_Type_Accesses := Skill.Get_Dates (State);
       X : Date_Type_Access := Date_Type_Access (Tests (1).Get_F);
       Y : Date_Type_Access := Dates (1);
    begin
@@ -20,8 +21,9 @@ package body Test_Annotation.Parse is
    end Check_Annotation;
 
    procedure Change_Annotation (T : in out Ahven.Framework.Test_Case'Class) is
-      Tests : Test_Type_Accesses := Skill.Get_Tests (Test (T).State);
-      Dates : Date_Type_Accesses := Skill.Get_Dates (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      Tests : Test_Type_Accesses := Skill.Get_Tests (State);
+      Dates : Date_Type_Accesses := Skill.Get_Dates (State);
       X : Test_Type_Access := Tests (1);
       Y : Date_Type_Access := Dates (2);
    begin
@@ -30,8 +32,9 @@ package body Test_Annotation.Parse is
    end Change_Annotation;
 
    procedure Annotation_Type_Safety (T : in out Ahven.Framework.Test_Case'Class) is
-      Tests : Test_Type_Accesses := Skill.Get_Tests (Test (T).State);
-      Dates : Date_Type_Accesses := Skill.Get_Dates (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      Tests : Test_Type_Accesses := Skill.Get_Tests (State);
+      Dates : Date_Type_Accesses := Skill.Get_Dates (State);
       X : Test_Type_Access := Tests (1);
    begin
       Ahven.Assert (X.Get_F /= Skill_Type_Access (X), "objects are not equal");

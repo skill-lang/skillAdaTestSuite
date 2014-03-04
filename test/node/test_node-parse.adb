@@ -12,25 +12,29 @@ package body Test_Node.Parse is
    end Initialize;
 
    procedure Node_1 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Node_Type_Accesses := Skill.Get_Nodes (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Node_Type_Accesses := Skill.Get_Nodes (State);
    begin
       Ahven.Assert (X (1).Get_Id = 23, "'first node'.Get_Id is not 23.");
    end Node_1;
 
    procedure Node_2 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Node_Type_Accesses := Skill.Get_Nodes (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Node_Type_Accesses := Skill.Get_Nodes (State);
    begin
       Ahven.Assert (X (2).Get_Id = 42, "'second node'.Get_Id is not 42.");
    end Node_2;
 
    procedure Node_3 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Node_Type_Accesses := Skill.Get_Nodes (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Node_Type_Accesses := Skill.Get_Nodes (State);
    begin
       Ahven.Assert (X (3).Get_Id = -1, "'third node'.Get_Id is not -1.");
    end Node_3;
 
    procedure Node_4 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Node_Type_Accesses := Skill.Get_Nodes (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Node_Type_Accesses := Skill.Get_Nodes (State);
    begin
       Ahven.Assert (X (4).Get_Id = 2, "'fourth node'.Get_Id is not 2.");
    end Node_4;

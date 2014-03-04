@@ -10,13 +10,15 @@ package body Test_Date.Parse is
    end Initialize;
 
    procedure Date_1 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Date_Type_Accesses := Skill.Get_Dates (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Date_Type_Accesses := Skill.Get_Dates (State);
    begin
       Ahven.Assert (X (1).Get_Date = 1, "'first date'.Get_Date is not 1.");
    end Date_1;
 
    procedure Date_2 (T : in out Ahven.Framework.Test_Case'Class) is
-      X : Date_Type_Accesses := Skill.Get_Dates (Test (T).State);
+      State : access Skill_State := Test (T).State;
+      X : Date_Type_Accesses := Skill.Get_Dates (State);
    begin
       Ahven.Assert (X (2).Get_Date = -1, "'second date'.Get_Date is not -1.");
    end Date_2;
