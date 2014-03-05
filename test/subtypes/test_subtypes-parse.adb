@@ -23,9 +23,10 @@ package body Test_Subtypes.Parse is
    begin
       for I in Types'Range loop
          declare
-            C : Character := To_Lower (Expanded_Name (Skill_Type_Access (X (I))'Tag)(10));
+            Object : Skill_Type'Class := X (I).all;
+            C : Character := To_Lower (Expanded_Name (Object'Tag)(10));
          begin
-            Ahven.Assert (C = Types (I), "index " & Trim (I'Img, Ada.Strings.Left));
+            Ahven.Assert (Types (I) = C, "index " & Trim (I'Img, Ada.Strings.Left));
          end;
       end loop;
    end Check_Types;

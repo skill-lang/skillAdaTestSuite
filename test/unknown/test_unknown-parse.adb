@@ -21,13 +21,13 @@ package body Test_Unknown.Parse is
    begin
       for I in Types'Range loop
          declare
-            C : Character := To_Lower (Expanded_Name (Skill_Type_Access (X (I))'Tag)(9));
+            Object : Skill_Type'Class := X (I).all;
+            C : Character := To_Lower (Expanded_Name (Object'Tag)(9));
          begin
-            Ahven.Assert (C = Types (I), "index " & Trim (I'Img, Ada.Strings.Left));
+            Ahven.Assert (Types (I) = C, "index " & Trim (I'Img, Ada.Strings.Left));
          end;
       end loop;
    end Check_Types;
-
 
    procedure Check_Fields_A (T : in out Ahven.Framework.Test_Case'Class) is
       use Ada.Strings.Fixed;
