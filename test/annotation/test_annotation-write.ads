@@ -13,5 +13,6 @@ package Test_Annotation.Write is
 
    procedure Read_And_Write;
    procedure Check_Annotation;
+   procedure Annotation_Type_Safety;
 
 end Test_Annotation.Write;

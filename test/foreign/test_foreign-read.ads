@@ -1,7 +1,7 @@
 with Ahven.Framework;
 with Unknown.Api.Skill;
 
-package Test_Foreign.Parse is
+package Test_Foreign.Read is
 
    package Skill renames Unknown.Api.Skill;
    use Unknown;
@@ -21,4 +21,4 @@ package Test_Foreign.Parse is
    procedure Node;
    procedure Two_Node_Blocks;
 
-end Test_Foreign.Parse;
+end Test_Foreign.Read;

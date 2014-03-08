@@ -1,7 +1,7 @@
 with Ahven.Framework;
 with Node.Api.Skill;
 
-package Test_Colored_Nodes.Parse is
+package Test_Colored_Nodes.Read is
 
    package Skill renames Node.Api.Skill;
    use Node;
@@ -13,7 +13,7 @@ package Test_Colored_Nodes.Parse is
 
    procedure Initialize (T : in out Test);
 
-   procedure Node_1 (T : in out Ahven.Framework.Test_Case'Class);
-   procedure Node_2 (T : in out Ahven.Framework.Test_Case'Class);
+   procedure Node_1;
+   procedure Node_2;
 
-end Test_Colored_Nodes.Parse;
+end Test_Colored_Nodes.Read;

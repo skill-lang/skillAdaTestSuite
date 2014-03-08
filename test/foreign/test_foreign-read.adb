@@ -1,8 +1,8 @@
-package body Test_Foreign.Parse is
+package body Test_Foreign.Read is
 
    procedure Initialize (T : in out Test) is
    begin
-      Set_Name (T, "Test_Foreign.Parse");
+      Set_Name (T, "Test_Foreign.Read");
       Ahven.Framework.Add_Test_Routine (T, Aircraft'Access, "aircraft.sf");
       Ahven.Framework.Add_Test_Routine (T, Annotation_Test'Access, "annotationTest.sf");
       Ahven.Framework.Add_Test_Routine (T, Colored_Nodes'Access, "coloredNodes.sf");
@@ -68,4 +68,4 @@ package body Test_Foreign.Parse is
       Skill.Read (State, "resources/twoNodeBlocks.sf");
    end Two_Node_Blocks;
 
-end Test_Foreign.Parse;
+end Test_Foreign.Read;
