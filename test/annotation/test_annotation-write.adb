@@ -41,7 +41,7 @@ package body Test_Annotation.Write is
          Dates : Date_Type_Accesses := Skill.Get_Dates (State);
          X : Test_Type_Access := Tests (1);
       begin
-         Ahven.Assert (X.Get_F /= Skill_Type_Access (X), "objects are not equal");
+         Ahven.Assert (X.Get_F /= Skill_Type_Access (X), "objects are equal");
       end;
    end Annotation_Type_Safety;
 
