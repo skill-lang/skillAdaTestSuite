@@ -19,6 +19,7 @@ package Test_Foreign.Read is
    procedure Date_Example;
    procedure Local_Base_Pool_Start_Index;
    procedure Node;
+   procedure Null_Annotation;
    procedure Two_Node_Blocks;
 
 end Test_Foreign.Read;

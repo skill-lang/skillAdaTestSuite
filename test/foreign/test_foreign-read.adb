@@ -11,6 +11,7 @@ package body Test_Foreign.Read is
       Ahven.Framework.Add_Test_Routine (T, Date_Example'Access, "date-example.sf");
       Ahven.Framework.Add_Test_Routine (T, Local_Base_Pool_Start_Index'Access, "localBasePoolStartIndex.sf");
       Ahven.Framework.Add_Test_Routine (T, Node'Access, "node.sf");
+      Ahven.Framework.Add_Test_Routine (T, Null_Annotation'Access, "nullAnnotation.sf");
       Ahven.Framework.Add_Test_Routine (T, Two_Node_Blocks'Access, "twoNodeBlocks.sf");
    end Initialize;
 
@@ -61,6 +62,12 @@ package body Test_Foreign.Read is
    begin
       Skill.Read (State, "resources/node.sf");
    end Node;
+
+   procedure Null_Annotation is
+      State : access Skill_State := new Skill_State;
+   begin
+      Skill.Read (State, "resources/nullAnnotation.sf");
+   end Null_Annotation;
 
    procedure Two_Node_Blocks is
       State : access Skill_State := new Skill_State;
