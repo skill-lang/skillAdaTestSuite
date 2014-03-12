@@ -17,6 +17,7 @@ package Test_Foreign.Read is
    procedure Constant_Maybe_Wrong;
    procedure Container;
    procedure Date_Example;
+   procedure Four_Colored_Nodes;
    procedure Local_Base_Pool_Start_Index;
    procedure Node;
    procedure Null_Annotation;

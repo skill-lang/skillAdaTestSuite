@@ -9,6 +9,7 @@ package body Test_Foreign.Read is
       Ahven.Framework.Add_Test_Routine (T, Constant_Maybe_Wrong'Access, "constant.sf");
       Ahven.Framework.Add_Test_Routine (T, Container'Access, "container.sf");
       Ahven.Framework.Add_Test_Routine (T, Date_Example'Access, "date-example.sf");
+      Ahven.Framework.Add_Test_Routine (T, Four_Colored_Nodes'Access, "fourColoredNodes.sf");
       Ahven.Framework.Add_Test_Routine (T, Local_Base_Pool_Start_Index'Access, "localBasePoolStartIndex.sf");
       Ahven.Framework.Add_Test_Routine (T, Node'Access, "node.sf");
       Ahven.Framework.Add_Test_Routine (T, Null_Annotation'Access, "nullAnnotation.sf");
@@ -50,6 +51,12 @@ package body Test_Foreign.Read is
    begin
       Skill.Read (State, "resources/date-example.sf");
    end Date_Example;
+
+   procedure Four_Colored_Nodes is
+      State : access Skill_State := new Skill_State;
+   begin
+      Skill.Read (State, "resources/fourColoredNodes.sf");
+   end Four_Colored_Nodes;
 
    procedure Local_Base_Pool_Start_Index is
       State : access Skill_State := new Skill_State;
