@@ -15,5 +15,6 @@ package Test_Container.Read is
    procedure Variable_Length_Array;
    procedure List;
    procedure Set;
+   procedure Map;
 
 end Test_Container.Read;
