@@ -69,7 +69,7 @@ package body Test_Container.Read is
          S : Container_S_Set.Set := X (1).Get_S;
       begin
          Ahven.Assert (1 = Natural (S.Length), "length is not 0");
-         Ahven.Assert (0 = Natural (S.First_Element), "element is not 0");
+         Ahven.Assert (S.Contains (0), "element is not 0");
       end;
    end Set;
 

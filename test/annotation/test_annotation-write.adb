@@ -12,13 +12,13 @@ package body Test_Annotation.Write is
       State : access Skill_State := new Skill_State;
    begin
       Skill.Read (State, "resources/annotationTest.sf");
-      Skill.Write (State, "test/write-annotationTest.sf");
+      Skill.Write (State, "tmp/write-annotationTest.sf");
    end Read_And_Write;
 
    procedure Check_Annotation is
       State : access Skill_State := new Skill_State;
    begin
-      Skill.Read (State, "test/write-annotationTest.sf");
+      Skill.Read (State, "tmp/write-annotationTest.sf");
 
       declare
          Tests : Test_Type_Accesses := Skill.Get_Tests (State);
@@ -32,7 +32,7 @@ package body Test_Annotation.Write is
 
    procedure Annotation_Type_Safety is
       State : access Skill_State := new Skill_State;
-      File_Name : constant String := "test/write-annotationTest.sf";
+      File_Name : constant String := "tmp/write-annotationTest.sf";
    begin
       Skill.Read (State, File_Name);
 
