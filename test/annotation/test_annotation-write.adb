@@ -1,5 +1,7 @@
 package body Test_Annotation.Write is
 
+   File_Name : constant String := "tmp/test-annotation-write.sf";
+
    procedure Initialize (T : in out Test) is
    begin
       Set_Name (T, "Test_Annotation.Write");
@@ -8,17 +10,28 @@ package body Test_Annotation.Write is
       Ahven.Framework.Add_Test_Routine (T, Annotation_Type_Safety'Access, "annotation type-safety");
    end Initialize;
 
-   procedure Read_And_Write is
+   procedure Set_Up (T : in out Test) is
       State : access Skill_State := new Skill_State;
    begin
       Skill.Read (State, "resources/annotationTest.sf");
-      Skill.Write (State, "tmp/write-annotationTest.sf");
-   end Read_And_Write;
+      Skill.Write (State, File_Name);
+   end Set_Up;
 
-   procedure Check_Annotation is
+   procedure Tear_Down (T : in out Test) is
+   begin
+      Ada.Directories.Delete_File (File_Name);
+   end Tear_Down;
+
+   procedure Read_And_Write (T : in out Ahven.Framework.Test_Case'Class) is
       State : access Skill_State := new Skill_State;
    begin
-      Skill.Read (State, "tmp/write-annotationTest.sf");
+      Skill.Read (State, File_Name);
+   end Read_And_Write;
+
+   procedure Check_Annotation (T : in out Ahven.Framework.Test_Case'Class) is
+      State : access Skill_State := new Skill_State;
+   begin
+      Skill.Read (State, File_Name);
 
       declare
          Tests : Test_Type_Accesses := Skill.Get_Tests (State);
@@ -30,9 +43,8 @@ package body Test_Annotation.Write is
       end;
    end Check_Annotation;
 
-   procedure Annotation_Type_Safety is
+   procedure Annotation_Type_Safety (T : in out Ahven.Framework.Test_Case'Class) is
       State : access Skill_State := new Skill_State;
-      File_Name : constant String := "tmp/write-annotationTest.sf";
    begin
       Skill.Read (State, File_Name);
 

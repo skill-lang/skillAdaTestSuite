@@ -6,6 +6,7 @@ with Test_Annotation.Read;
 with Test_Annotation.Write;
 with Test_Colored_Nodes.Read;
 with Test_Container.Read;
+with Test_Container.Write;
 with Test_Date.Read;
 with Test_Foreign.Read;
 with Test_Node.Read;
@@ -20,6 +21,7 @@ begin
    Ahven.Framework.Add_Test (Suite, new Test_Annotation.Write.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Colored_Nodes.Read.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Container.Read.Test);
+   Ahven.Framework.Add_Test (Suite, new Test_Container.Write.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Date.Read.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Foreign.Read.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Node.Read.Test);
