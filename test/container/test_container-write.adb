@@ -5,9 +5,9 @@ package body Test_Container.Write is
    begin
       Set_Name (T, "Test_Container.Write");
       Ahven.Framework.Add_Test_Routine (T, Constant_Length_Array'Access, "constant length array: 7, 49, 343");
-      Ahven.Framework.Add_Test_Routine (T, Variable_Length_Array'Access, "variable length array: 9, 81, 729");
+      Ahven.Framework.Add_Test_Routine (T, Variable_Length_Array'Access, "variable length array: 9, 81, 729, 6561");
       Ahven.Framework.Add_Test_Routine (T, List'Access, "list with 100 numbers");
-      Ahven.Framework.Add_Test_Routine (T, Set'Access, "set with 100 numbers");
+      Ahven.Framework.Add_Test_Routine (T, Set'Access, "set with 999 numbers");
       Ahven.Framework.Add_Test_Routine (T, Map'Access, "3 strings and some numbers");
    end Initialize;
 
@@ -17,14 +17,14 @@ package body Test_Container.Write is
       Skill.Create (State);
 
       declare
-         arr : Container_Arr_Array := (7, 49, 343);
+         arr : Container_Arr_Array := (7, 7**2, 7**3);
          varr : Container_Varr_Vector.Vector;
          l : Container_L_List.List;
          s : Container_S_Set.Set;
          f : Container_F_Map_1.Map;
          someset : Container_Someset_Set.Set;
       begin
-         for I in 1 .. Long (3) loop
+         for I in 1 .. Long (4) loop
             varr.Append (9 ** Natural (I));
          end loop;
 
