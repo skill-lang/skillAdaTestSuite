@@ -5,7 +5,7 @@ package body Test_Annotation.Write is
    procedure Initialize (T : in out Test) is
    begin
       Set_Name (T, "Test_Annotation.Write");
-      Ahven.Framework.Add_Test_Routine (T, Read_And_Write'Access, "read and write");
+      Ahven.Framework.Add_Test_Routine (T, Read_Written'Access, "read written");
       Ahven.Framework.Add_Test_Routine (T, Check_Annotation'Access, "check annotation");
       Ahven.Framework.Add_Test_Routine (T, Annotation_Type_Safety'Access, "annotation type-safety");
    end Initialize;
@@ -22,11 +22,11 @@ package body Test_Annotation.Write is
       Ada.Directories.Delete_File (File_Name);
    end Tear_Down;
 
-   procedure Read_And_Write (T : in out Ahven.Framework.Test_Case'Class) is
+   procedure Read_Written (T : in out Ahven.Framework.Test_Case'Class) is
       State : access Skill_State := new Skill_State;
    begin
       Skill.Read (State, File_Name);
-   end Read_And_Write;
+   end Read_Written;
 
    procedure Check_Annotation (T : in out Ahven.Framework.Test_Case'Class) is
       State : access Skill_State := new Skill_State;

@@ -2,7 +2,7 @@ with Ada.Directories;
 with Ahven.Framework;
 with Annotation.Api.Skill;
 
-package Test_Annotation.Write is
+package Test_Null_Annotation.Write is
 
    package Skill renames Annotation.Api.Skill;
    use Annotation;
@@ -16,7 +16,6 @@ package Test_Annotation.Write is
    procedure Tear_Down (T : in out Test);
 
    procedure Read_Written (T : in out Ahven.Framework.Test_Case'Class);
-   procedure Check_Annotation (T : in out Ahven.Framework.Test_Case'Class);
-   procedure Annotation_Type_Safety (T : in out Ahven.Framework.Test_Case'Class);
+   procedure Null_Annotation (T : in out Ahven.Framework.Test_Case'Class);
 
-end Test_Annotation.Write;
+end Test_Null_Annotation.Write;
