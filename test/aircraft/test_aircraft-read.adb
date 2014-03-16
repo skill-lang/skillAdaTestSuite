@@ -19,7 +19,6 @@ package body Test_Aircraft.Read is
       declare
          X : Airplane_Type_Accesses := Skill.Get_Airplanes (State);
       begin
-   --      Ahven.Assert (X (1).Get_X = 42, "'first airplane'.Get_X is not 42.");
          Ahven.Assert (X (1).Get_Id = 1, "'first airplane'.Get_Id is not 1.");
          Ahven.Assert (X (1).Get_Name = "Fokker 100", "'first airplane'.Get_Name is not 'Fokker 100'.");
          Ahven.Assert (X (1).Get_Operational = True, "'first airplane'.Get_Operational is not true.");
@@ -36,7 +35,6 @@ package body Test_Aircraft.Read is
       declare
          X : Airplane_Type_Accesses := Skill.Get_Airplanes (State);
       begin
-   --      Ahven.Assert (X (2).Get_X = 42, "'second airplane'.Get_X is not 42.");
          Ahven.Assert (X (2).Get_Id = 2, "'second airplane'.Get_Id is not 2.");
          Ahven.Assert (X (2).Get_Name = "Bombardier Dash 8", "'second airplane'.Get_Name is not 'Bombardier Dash 8'.");
          Ahven.Assert (X (2).Get_Operational = False, "'second airplane'.Get_Operational is not false.");
