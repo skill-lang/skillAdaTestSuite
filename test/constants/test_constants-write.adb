@@ -33,13 +33,13 @@ package body Test_Constants.Write is
    begin
       Skill.Read (State, File_Name);
 
-      declare
-         X : Constant_Type_Accesses := Get_Constants (State);
-      begin
-         for I in X'Range loop
-            Ahven.Assert (8 = X (I).Get_A, "constant is not 8");
-         end loop;
-      end;
+      for I in 1 .. Constants_Size (State) loop
+         declare
+            X : Constant_Type_Access := Get_Constant (State, I);
+         begin
+            Ahven.Assert (8 = X.Get_A, "constant is not 8");
+         end;
+      end loop;
    end A;
 
    procedure B (T : in out Ahven.Framework.Test_Case'Class) is
@@ -47,13 +47,13 @@ package body Test_Constants.Write is
    begin
       Skill.Read (State, File_Name);
 
-      declare
-         X : Constant_Type_Accesses := Get_Constants (State);
-      begin
-         for I in X'Range loop
-            Ahven.Assert (16 = X (I).Get_B, "constant is not 16");
-         end loop;
-      end;
+      for I in 1 .. Constants_Size (State) loop
+         declare
+            X : Constant_Type_Access := Get_Constant (State, I);
+         begin
+            Ahven.Assert (16 = X.Get_B, "constant is not 16");
+         end;
+      end loop;
    end B;
 
    procedure C (T : in out Ahven.Framework.Test_Case'Class) is
@@ -61,13 +61,13 @@ package body Test_Constants.Write is
    begin
       Skill.Read (State, File_Name);
 
-      declare
-         X : Constant_Type_Accesses := Get_Constants (State);
-      begin
-         for I in X'Range loop
-            Ahven.Assert (32 = X (I).Get_C, "constant is not 32");
-         end loop;
-      end;
+      for I in 1 .. Constants_Size (State) loop
+         declare
+            X : Constant_Type_Access := Get_Constant (State, I);
+         begin
+            Ahven.Assert (32 = X.Get_C, "constant is not 32");
+         end;
+      end loop;
    end C;
 
    procedure D (T : in out Ahven.Framework.Test_Case'Class) is
@@ -75,13 +75,13 @@ package body Test_Constants.Write is
    begin
       Skill.Read (State, File_Name);
 
-      declare
-         X : Constant_Type_Accesses := Get_Constants (State);
-      begin
-         for I in X'Range loop
-            Ahven.Assert (64 = X (I).Get_D, "constant is not 64");
-         end loop;
-      end;
+      for I in 1 .. Constants_Size (State) loop
+         declare
+            X : Constant_Type_Access := Get_Constant (State, I);
+         begin
+            Ahven.Assert (64 = X.Get_D, "constant is not 64");
+         end;
+      end loop;
    end D;
 
    procedure E (T : in out Ahven.Framework.Test_Case'Class) is
@@ -89,13 +89,13 @@ package body Test_Constants.Write is
    begin
       Skill.Read (State, File_Name);
 
-      declare
-         X : Constant_Type_Accesses := Get_Constants (State);
-      begin
-         for I in X'Range loop
-            Ahven.Assert (46 = X (I).Get_E, "constant is not 46");
-         end loop;
-      end;
+      for I in 1 .. Constants_Size (State) loop
+         declare
+            X : Constant_Type_Access := Get_Constant (State, I);
+         begin
+            Ahven.Assert (46 = X.Get_E, "constant is not 46");
+         end;
+      end loop;
    end E;
 
 end Test_Constants.Write;

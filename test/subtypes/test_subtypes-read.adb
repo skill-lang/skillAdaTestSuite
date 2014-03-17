@@ -20,12 +20,11 @@ package body Test_Subtypes.Read is
       Skill.Read (State, "resources/localBasePoolStartIndex.sf");
 
       declare
-         X : A_Type_Accesses := Skill.Get_As (State);
          Types : constant String := "aabbbcbbddacd";
       begin
          for I in Types'Range loop
             declare
-               Object : Skill_Type'Class := X (I).all;
+               Object : Skill_Type'Class := Get_A (State, I).all;
                C : Character := To_Lower (Expanded_Name (Object'Tag)(10));
             begin
                Ahven.Assert (Types (I) = C, "index " & Trim (I'Img, Ada.Strings.Left));
@@ -41,13 +40,13 @@ package body Test_Subtypes.Read is
    begin
       Skill.Read (State, "resources/localBasePoolStartIndex.sf");
 
-      declare
-         X : A_Type_Accesses := Skill.Get_As (State);
-      begin
-         for I in X'Range loop
-            Ahven.Assert (X (I) = X (I).Get_A, "index " & Trim (I'Img, Ada.Strings.Left));
-         end loop;
-      end;
+      for I in 1 .. As_Size (State) loop
+         declare
+            X : A_Type_Access := Get_A (State, I);
+         begin
+            Ahven.Assert (X = X.Get_A, "index " & Trim (I'Img, Ada.Strings.Left));
+         end;
+      end loop;
    end Check_Fields_A;
 
    procedure Check_Fields_B is
@@ -57,13 +56,13 @@ package body Test_Subtypes.Read is
    begin
       Skill.Read (State, "resources/localBasePoolStartIndex.sf");
 
-      declare
-         X : B_Type_Accesses := Skill.Get_Bs (State);
-      begin
-         for I in X'Range loop
-            Ahven.Assert (X (I) = X (I).Get_B, "index " & Trim (I'Img, Ada.Strings.Left));
-         end loop;
-      end;
+      for I in 1 .. Bs_Size (State) loop
+         declare
+            X : B_Type_Access := Get_B (State, I);
+         begin
+            Ahven.Assert (X = X.Get_B, "index " & Trim (I'Img, Ada.Strings.Left));
+         end;
+      end loop;
    end Check_Fields_B;
 
    procedure Check_Fields_C is
@@ -73,13 +72,13 @@ package body Test_Subtypes.Read is
    begin
       Skill.Read (State, "resources/localBasePoolStartIndex.sf");
 
-      declare
-         X : C_Type_Accesses := Skill.Get_Cs (State);
-      begin
-         for I in X'Range loop
-            Ahven.Assert (X (I) = X (I).Get_C, "index " & Trim (I'Img, Ada.Strings.Left));
-         end loop;
-      end;
+      for I in 1 .. Cs_Size (State) loop
+         declare
+            X : C_Type_Access := Get_C (State, I);
+         begin
+            Ahven.Assert (X = X.Get_C, "index " & Trim (I'Img, Ada.Strings.Left));
+         end;
+      end loop;
    end Check_Fields_C;
 
    procedure Check_Fields_D is
@@ -89,13 +88,13 @@ package body Test_Subtypes.Read is
    begin
       Skill.Read (State, "resources/localBasePoolStartIndex.sf");
 
-      declare
-         X : D_Type_Accesses := Skill.Get_Ds (State);
-      begin
-         for I in X'Range loop
-            Ahven.Assert (X (I) = X (I).Get_D, "index " & Trim (I'Img, Ada.Strings.Left));
-         end loop;
-      end;
+      for I in 1 .. Ds_Size (State) loop
+         declare
+            X : D_Type_Access := Get_D (State, I);
+         begin
+            Ahven.Assert (X = X.Get_D, "index " & Trim (I'Img, Ada.Strings.Left));
+         end;
+      end loop;
    end Check_Fields_D;
 
 end Test_Subtypes.Read;

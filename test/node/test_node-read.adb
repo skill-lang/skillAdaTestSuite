@@ -15,9 +15,9 @@ package body Test_Node.Read is
       Skill.Read (State, "resources/twoNodeBlocks.sf");
 
       declare
-         X : Node_Type_Accesses := Skill.Get_Nodes (State);
+         X : Node_Type_Access := Skill.Get_Node (State, 1);
       begin
-         Ahven.Assert (X (1).Get_Id = 23, "'first node'.Get_Id is not 23.");
+         Ahven.Assert (X.Get_Id = 23, "'first node'.Get_Id is not 23.");
       end;
    end Node_1;
 
@@ -27,9 +27,9 @@ package body Test_Node.Read is
       Skill.Read (State, "resources/twoNodeBlocks.sf");
 
       declare
-         X : Node_Type_Accesses := Skill.Get_Nodes (State);
+         X : Node_Type_Access := Skill.Get_Node (State, 2);
       begin
-         Ahven.Assert (X (2).Get_Id = 42, "'second node'.Get_Id is not 42.");
+         Ahven.Assert (X.Get_Id = 42, "'second node'.Get_Id is not 42.");
       end;
    end Node_2;
 
@@ -39,9 +39,9 @@ package body Test_Node.Read is
       Skill.Read (State, "resources/twoNodeBlocks.sf");
 
       declare
-         X : Node_Type_Accesses := Skill.Get_Nodes (State);
+         X : Node_Type_Access := Skill.Get_Node (State, 3);
       begin
-         Ahven.Assert (X (3).Get_Id = -1, "'third node'.Get_Id is not -1.");
+         Ahven.Assert (X.Get_Id = -1, "'third node'.Get_Id is not -1.");
       end;
    end Node_3;
 
@@ -51,9 +51,9 @@ package body Test_Node.Read is
       Skill.Read (State, "resources/twoNodeBlocks.sf");
 
       declare
-         X : Node_Type_Accesses := Skill.Get_Nodes (State);
+         X : Node_Type_Access := Skill.Get_Node (State, 4);
       begin
-         Ahven.Assert (X (4).Get_Id = 2, "'fourth node'.Get_Id is not 2.");
+         Ahven.Assert (X.Get_Id = 2, "'fourth node'.Get_Id is not 2.");
       end;
    end Node_4;
 

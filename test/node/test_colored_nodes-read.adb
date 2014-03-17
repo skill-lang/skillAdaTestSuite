@@ -13,9 +13,9 @@ package body Test_Colored_Nodes.Read is
       Skill.Read (State, "resources/coloredNodes.sf");
 
       declare
-         X : Node_Type_Accesses := Skill.Get_Nodes (State);
+         X : Node_Type_Access := Skill.Get_Node (State, 1);
       begin
-         Ahven.Assert (X (1).Get_Id = 23, "'first node'.Get_Id is not 23.");
+         Ahven.Assert (X.Get_Id = 23, "'first node'.Get_Id is not 23.");
       end;
    end Node_1;
 
@@ -25,9 +25,9 @@ package body Test_Colored_Nodes.Read is
       Skill.Read (State, "resources/coloredNodes.sf");
 
       declare
-         X : Node_Type_Accesses := Skill.Get_Nodes (State);
+         X : Node_Type_Access := Skill.Get_Node (State, 2);
       begin
-         Ahven.Assert (X (2).Get_Id = 42, "'second node'.Get_Id is not 42.");
+         Ahven.Assert (X.Get_Id = 42, "'second node'.Get_Id is not 42.");
       end;
    end Node_2;
 

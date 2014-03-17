@@ -16,8 +16,8 @@ package body Test_Container.Read is
       Skill.Read (State, "resources/container.sf");
 
       declare
-         X : Container_Type_Accesses := Skill.Get_Containers (State);
-         Arr : Container_Arr_Array := X (1).Get_Arr;
+         X : Container_Type_Access := Skill.Get_Container (State, 1);
+         Arr : Container_Arr_Array := X.Get_Arr;
       begin
          for I in 1 .. 3 loop
             Ahven.Assert (0 = Arr (I), "not three zeros");
@@ -33,8 +33,8 @@ package body Test_Container.Read is
       Skill.Read (State, "resources/container.sf");
 
       declare
-         X : Container_Type_Accesses := Skill.Get_Containers (State);
-         Varr : Container_Varr_Vector.Vector := X (1).Get_Varr;
+         X : Container_Type_Access := Skill.Get_Container (State, 1);
+         Varr : Container_Varr_Vector.Vector := X.Get_Varr;
       begin
          Ahven.Assert (3 = Natural (Varr.Length), "length is not 3");
          for I in 1 .. 3 loop
@@ -51,8 +51,8 @@ package body Test_Container.Read is
       Skill.Read (State, "resources/container.sf");
 
       declare
-         X : Container_Type_Accesses := Skill.Get_Containers (State);
-         L : Container_L_List.List := X (1).Get_L;
+         X : Container_Type_Access := Skill.Get_Container (State, 1);
+         L : Container_L_List.List := X.Get_L;
       begin
          Ahven.Assert (L.Is_Empty, "is not empty");
       end;
@@ -66,8 +66,8 @@ package body Test_Container.Read is
       Skill.Read (State, "resources/container.sf");
 
       declare
-         X : Container_Type_Accesses := Skill.Get_Containers (State);
-         S : Container_S_Set.Set := X (1).Get_S;
+         X : Container_Type_Access := Skill.Get_Container (State, 1);
+         S : Container_S_Set.Set := X.Get_S;
       begin
          Ahven.Assert (1 = Natural (S.Length), "length is not 0");
          Ahven.Assert (S.Contains (0), "element is not 0");
@@ -80,8 +80,6 @@ package body Test_Container.Read is
       Skill.Read (State, "resources/container.sf");
 
       declare
-         X : Container_Type_Accesses := Get_Containers (State);
-
          procedure Iterate_2 (Position : Container_F_Map_2.Cursor) is
             K : v64 := Container_F_Map_2.Key (Position);
             V : v64 := Container_F_Map_2.Element (Position);
@@ -98,9 +96,9 @@ package body Test_Container.Read is
             M.Iterate (Iterate_2'Access);
          end Iterate;
       begin
-         for I in X'Range loop
+         for I in 1 .. Containers_Size (State) loop
             declare
-               M : Container_F_Map_1.Map := X (I).Get_F;
+               M : Container_F_Map_1.Map := Get_Container (State, I).Get_F;
             begin
                M.Iterate (Iterate'Access);
             end;

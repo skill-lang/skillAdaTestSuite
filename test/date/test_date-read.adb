@@ -13,9 +13,9 @@ package body Test_Date.Read is
       Skill.Read (State, "resources/date-example.sf");
 
       declare
-         X : Date_Type_Accesses := Skill.Get_Dates (State);
+         X : Date_Type_Access := Skill.Get_Date (State, 1);
       begin
-         Ahven.Assert (X (1).Get_Date = 1, "'first date'.Get_Date is not 1.");
+         Ahven.Assert (X.Get_Date = 1, "'first date'.Get_Date is not 1.");
       end;
    end Date_1;
 
@@ -25,9 +25,9 @@ package body Test_Date.Read is
       Skill.Read (State, "resources/date-example.sf");
 
       declare
-         X : Date_Type_Accesses := Skill.Get_Dates (State);
+         X : Date_Type_Access := Skill.Get_Date (State, 2);
       begin
-         Ahven.Assert (X (2).Get_Date = -1, "'second date'.Get_Date is not -1.");
+         Ahven.Assert (X.Get_Date = -1, "'second date'.Get_Date is not -1.");
       end;
    end Date_2;
 

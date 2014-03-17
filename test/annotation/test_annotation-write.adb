@@ -34,10 +34,10 @@ package body Test_Annotation.Write is
       Skill.Read (State, File_Name);
 
       declare
-         Tests : Test_Type_Accesses := Skill.Get_Tests (State);
-         Dates : Date_Type_Accesses := Skill.Get_Dates (State);
-         X : Date_Type_Access := Date_Type_Access (Tests (1).Get_F);
-         Y : Date_Type_Access := Dates (1);
+         Test : Test_Type_Access := Skill.Get_Test (State, 1);
+         Date : Date_Type_Access := Skill.Get_Date (State, 1);
+         X : Date_Type_Access := Date_Type_Access (Test.Get_F);
+         Y : Date_Type_Access := Date;
       begin
          Ahven.Assert (X = Y, "objects are not equal");
       end;
@@ -49,10 +49,9 @@ package body Test_Annotation.Write is
       Skill.Read (State, File_Name);
 
       declare
-         Tests : Test_Type_Accesses := Skill.Get_Tests (State);
-         Dates : Date_Type_Accesses := Skill.Get_Dates (State);
+         Test : Test_Type_Access := Skill.Get_Test (State, 1);
       begin
-         Ahven.Assert (Tests (1).Get_F /= Skill_Type_Access (Tests (1)), "objects are equal");
+         Ahven.Assert (Test.Get_F /= Skill_Type_Access (Test), "objects are equal");
       end;
    end Annotation_Type_Safety;
 

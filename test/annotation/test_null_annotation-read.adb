@@ -13,9 +13,9 @@ package body Test_Null_Annotation.Read is
       Skill.Read (State, File_Name);
 
       declare
-         Tests : Test_Type_Accesses := Skill.Get_Tests (State);
+         Test : Test_Type_Access := Skill.Get_Test (State, 1);
       begin
-         Ahven.Assert (null = Tests (1).Get_F, "annotation is not null");
+         Ahven.Assert (null = Test.Get_F, "annotation is not null");
       end;
    end Null_Annotation;
 

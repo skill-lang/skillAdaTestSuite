@@ -72,8 +72,8 @@ package body Test_Container.Write is
       Skill.Read (State, File_Name);
 
       declare
-         X : Container_Type_Accesses := Get_Containers (State);
-         arr : Container_Arr_Array := X (1).Get_Arr;
+         X : Container_Type_Access := Get_Container (State, 1);
+         arr : Container_Arr_Array := X.Get_Arr;
       begin
          for I in arr'Range loop
             Ahven.Assert (7 ** I = arr (I), Integer'Image (7 ** I) & " /= " & arr (I)'Img);
@@ -89,8 +89,8 @@ package body Test_Container.Write is
       declare
          use Container_Varr_Vector;
 
-         X : Container_Type_Accesses := Get_Containers (State);
-         varr : Container_Varr_Vector.Vector := X (1).Get_Varr;
+         X : Container_Type_Access := Get_Container (State, 1);
+         varr : Container_Varr_Vector.Vector := X.Get_Varr;
 
          procedure Iterate (Position : Cursor) is
          begin
@@ -110,8 +110,8 @@ package body Test_Container.Write is
       declare
          use Container_L_List;
 
-         X : Container_Type_Accesses := Get_Containers (State);
-         l : Container_L_List.List := X (1).Get_L;
+         X : Container_Type_Access := Get_Container (State, 1);
+         l : Container_L_List.List := X.Get_L;
          I : Long := 1;
 
          procedure Iterate (Position : Cursor) is
@@ -133,8 +133,8 @@ package body Test_Container.Write is
       declare
          use Container_S_Set;
 
-         X : Container_Type_Accesses := Get_Containers (State);
-         s : Container_S_Set.Set := X (1).Get_S;
+         X : Container_Type_Access := Get_Container (State, 1);
+         s : Container_S_Set.Set := X.Get_S;
          I : Long := 1;
 
          procedure Iterate (Position : Cursor) is
@@ -156,8 +156,8 @@ package body Test_Container.Write is
       declare
          use Container_F_Map_1;
 
-         X : Container_Type_Accesses := Get_Containers (State);
-         f : Container_F_Map_1.Map := X (1).Get_F;
+         X : Container_Type_Access := Get_Container (State, 1);
+         f : Container_F_Map_1.Map := X.Get_F;
       begin
          Ahven.Assert (f.Contains (SU.To_Unbounded_String ("a")), "f does not contain string a");
          Ahven.Assert (f.Contains (SU.To_Unbounded_String ("c")), "f does not contain string b");
