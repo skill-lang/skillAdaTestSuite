@@ -2,6 +2,7 @@ with Ahven.Framework;
 with Ahven.Text_Runner;
 
 with Test_Aircraft.Read;
+with Test_Aircraft.Write;
 
 with Test_Annotation.Read;
 with Test_Annotation.Write;
@@ -18,12 +19,16 @@ with Test_Colored_Nodes.Read;
 with Test_Node.Read;
 
 with Test_Subtypes.Read;
+with Test_Subtypes.Write;
+
 with Test_Unknown.Read;
+with Test_Unknown.Write;
 
 procedure Tester is
    Suite : Ahven.Framework.Test_Suite := Ahven.Framework.Create_Suite ("All");
 begin
    Ahven.Framework.Add_Test (Suite, new Test_Aircraft.Read.Test);
+   Ahven.Framework.Add_Test (Suite, new Test_Aircraft.Write.Test);
 
    Ahven.Framework.Add_Test (Suite, new Test_Annotation.Read.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Annotation.Write.Test);
@@ -40,7 +45,10 @@ begin
    Ahven.Framework.Add_Test (Suite, new Test_Node.Read.Test);
 
    Ahven.Framework.Add_Test (Suite, new Test_Subtypes.Read.Test);
+   Ahven.Framework.Add_Test (Suite, new Test_Subtypes.Write.Test);
+
    Ahven.Framework.Add_Test (Suite, new Test_Unknown.Read.Test);
+   Ahven.Framework.Add_Test (Suite, new Test_Unknown.Write.Test);
 
    Ahven.Text_Runner.Run (Suite);
 end Tester;
