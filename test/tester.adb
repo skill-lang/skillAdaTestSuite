@@ -24,6 +24,7 @@ with Test_Foreign.Read;
 with Test_Colored_Nodes.Read;
 with Test_Node.Read;
 
+with Test_Subtypes.Append;
 with Test_Subtypes.Read;
 with Test_Subtypes.Write;
 
@@ -56,6 +57,7 @@ begin
    Ahven.Framework.Add_Test (Suite, new Test_Colored_Nodes.Read.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Node.Read.Test);
 
+   Ahven.Framework.Add_Test (Suite, new Test_Subtypes.Append.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Subtypes.Read.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Subtypes.Write.Test);
 
