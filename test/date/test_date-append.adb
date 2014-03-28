@@ -29,7 +29,7 @@ package body Test_Date.Append is
          Skill.Read (State, File_Name);
          New_Date (State, 23);
          New_Date (State, 42);
-         Skill.Append (State, File_Name);
+         Skill.Append (State);
       end;
 
       declare
@@ -54,11 +54,11 @@ package body Test_Date.Append is
          Write (State, File_Name);
          New_Date (State, 3);
          New_Date (State, 4);
-         Skill.Append (State, File_Name);
-         Skill.Append (State, File_Name);
-         Skill.Append (State, File_Name);
+         Skill.Append (State);
+         Skill.Append (State);
+         Skill.Append (State);
          New_Date (State, 5);
-         Skill.Append (State, File_Name);
+         Skill.Append (State);
       end;
 
       declare

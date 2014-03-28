@@ -36,7 +36,7 @@ package body Test_Aircraft.Append is
          Skill.Read (State, File_Name);
          New_Airplane (State, SU.To_Unbounded_String ("General Dynamics F-16"), False, 14);
          New_Airplane (State, SU.To_Unbounded_String ("Cessna 172"), False, 102);
-         Skill.Append (State, File_Name);
+         Skill.Append (State);
       end;
 
       declare
@@ -69,7 +69,7 @@ package body Test_Aircraft.Append is
          New_Airplane (State, SU.To_Unbounded_String ("General Dynamics F-16"), False, 14);
          New_Helicopter (State, SU.To_Unbounded_String ("Sikorsky R-4"), True, 99);
          New_Airplane (State, SU.To_Unbounded_String ("Cessna 172"), False, 102);
-         Skill.Append (State, File_Name);
+         Skill.Append (State);
       end;
 
       declare

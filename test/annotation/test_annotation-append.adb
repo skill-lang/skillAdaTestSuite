@@ -26,7 +26,7 @@ package body Test_Annotation.Append is
          New_Test (State, Skill_Type_Access (B));
       end;
 
-      Skill.Append (State, File_Name);
+      Skill.Append (State);
    end Set_Up;
 
    procedure Tear_Down (T : in out Test) is

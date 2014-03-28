@@ -55,11 +55,11 @@ package body Test_Subtypes.Append is
       Add_D;
       Add_B;
       Add_D;
-      Skill.Append (State, File_Name);
+      Skill.Append (State);
       Add_A;
       Add_D;
       Add_C;
-      Skill.Append (State, File_Name);
+      Skill.Append (State);
    end Set_Up;
 
    procedure Tear_Down (T : in out Test) is
