@@ -1,17 +1,17 @@
-Project Skill is
+Project Skill_Benchmark is
    for Languages use ("Ada");
 
    for Exec_Dir use "../";
-   for Main use ("main.adb");
+   for Main use ("benchmark.adb");
    for Object_Dir use "../obj";
-   for Source_Dirs use ("../src/**");
+   for Source_Dirs use ("../src/**", "../benchmark/**");
 
    package Builder is
       for Default_Switches ("Ada") use ("-gnatn", "-gnatN", "-gnatp", "-gnat2012");
-      for Executable ("main.adb") use "main";
+      for Executable ("benchmark.adb") use "benchmark_obj";
    end Builder;
 
    package Compiler is
       for Default_Switches ("Ada") use ("-O3", "-march=corei7");
    end Compiler;
-end Skill;
+end Skill_Benchmark;
