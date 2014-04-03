@@ -1,11 +1,11 @@
 with Ahven.Framework;
-with Node.Api.Skill;
+with Node.Api;
 
 package Test_Colored_Nodes.Read is
 
-   package Skill renames Node.Api.Skill;
+   package Skill renames Node.Api;
    use Node;
-   use Skill;
+   use Node.Api;
 
    type Test is new Ahven.Framework.Test_Case with record
       State : access Skill_State := new Skill_State;

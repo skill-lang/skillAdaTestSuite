@@ -1,12 +1,12 @@
 with Ada.Directories;
 with Ahven.Framework;
-with Date.Api.Skill;
+with Date.Api;
 
 package Test_Date.Append is
 
-   package Skill renames Date.Api.Skill;
+   package Skill renames Date.Api;
    use Date;
-   use Skill;
+   use Date.Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

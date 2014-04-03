@@ -2,13 +2,13 @@ with Ada.Characters.Handling;
 with Ada.Strings.Fixed;
 with Ada.Tags;
 with Ahven.Framework;
-with Unknown.Api.Skill;
+with Unknown.Api;
 
 package Test_Unknown.Read is
 
-   package Skill renames Unknown.Api.Skill;
+   package Skill renames Unknown.Api;
    use Unknown;
-   use Skill;
+   use Unknown.Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

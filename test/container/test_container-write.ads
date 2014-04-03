@@ -1,14 +1,14 @@
 with Ada.Directories;
 with Ahven.Framework;
-with Container.Api.Skill;
+with Container.Api;
 
 with Ada.Text_IO;
 
 package Test_Container.Write is
 
-   package Skill renames Container.Api.Skill;
+   package Skill renames Container.Api;
    use Container;
-   use Skill;
+   use Container.Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

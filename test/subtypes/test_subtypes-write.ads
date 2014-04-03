@@ -3,13 +3,13 @@ with Ada.Directories;
 with Ada.Strings.Fixed;
 with Ada.Tags;
 with Ahven.Framework;
-with Subtypes.Api.Skill;
+with Subtypes.Api;
 
 package Test_Subtypes.Write is
 
-   package Skill renames Subtypes.Api.Skill;
+   package Skill renames Subtypes.Api;
    use Subtypes;
-   use Skill;
+   use Subtypes.Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

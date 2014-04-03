@@ -2,13 +2,13 @@ with Ada.Directories;
 with Ada.Strings.Unbounded;
 with Ada.Tags;
 with Ahven.Framework;
-with Aircraft.Api.Skill;
+with Aircraft.Api;
 
 package Test_Aircraft.Append is
 
-   package Skill renames Aircraft.Api.Skill;
+   package Skill renames Aircraft.Api;
    use Aircraft;
-   use Skill;
+   use Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

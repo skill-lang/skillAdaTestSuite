@@ -1,14 +1,14 @@
 with Ada.Directories;
 with Ahven.Framework;
-with Constants.Api.Skill;
+with Constants.Api;
 
 with Ada.Text_IO;
 
 package Test_Constants.Write is
 
-   package Skill renames Constants.Api.Skill;
+   package Skill renames Constants.Api;
    use Constants;
-   use Skill;
+   use Constants.Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

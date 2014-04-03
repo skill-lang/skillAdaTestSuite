@@ -1,11 +1,11 @@
 with Ahven.Framework;
-with Annotation.Api.Skill;
+with Annotation.Api;
 
 package Test_Annotation.Read is
 
-   package Skill renames Annotation.Api.Skill;
+   package Skill renames Annotation.Api;
    use Annotation;
-   use Skill;
+   use Annotation.Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

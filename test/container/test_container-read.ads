@@ -1,11 +1,11 @@
 with Ahven.Framework;
-with Container.Api.Skill;
+with Container.Api;
 
 package Test_Container.Read is
 
-   package Skill renames Container.Api.Skill;
+   package Skill renames Container.Api;
    use Container;
-   use Skill;
+   use Container.Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

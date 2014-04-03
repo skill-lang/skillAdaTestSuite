@@ -1,13 +1,13 @@
 with Ada.Directories;
 with Ada.Strings.Unbounded;
 with Ahven.Framework;
-with Aircraft.Api.Skill;
+with Aircraft.Api;
 
 package Test_Aircraft.Write is
 
-   package Skill renames Aircraft.Api.Skill;
+   package Skill renames Aircraft.Api;
    use Aircraft;
-   use Skill;
+   use Aircraft.Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

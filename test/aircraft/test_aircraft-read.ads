@@ -1,12 +1,11 @@
 with Ada.Strings.Unbounded;
 with Ahven.Framework;
-with Aircraft.Api.Skill;
+with Aircraft.Api;
 
 package Test_Aircraft.Read is
 
-   package Skill renames Aircraft.Api.Skill;
    use Aircraft;
-   use Skill;
+   use Aircraft.Api;
 
    type Test is new Ahven.Framework.Test_Case with null record;
 

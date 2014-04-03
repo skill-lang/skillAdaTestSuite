@@ -1,5 +1,7 @@
 package body Test_Aircraft.Read is
 
+   package Skill renames Aircraft.Api;
+
    procedure Initialize (T : in out Test) is
    begin
       Set_Name (T, "Test_Aircraft.Read");
