@@ -89,10 +89,10 @@ package body Test_Container.Read is
          end Iterate_2;
 
          procedure Iterate (Position : Container_F_Map_1.Cursor) is
-            K : SU.Unbounded_String := Container_F_Map_1.Key (Position);
+            K : String_Access := Container_F_Map_1.Key (Position);
             M : Container_F_Map_2.Map := Container_F_Map_1.Element (Position);
          begin
-            Ahven.Assert ("f" = SU.To_String (K), "string is not f");
+            Ahven.Assert ("f" = K.all, "string is not f");
             M.Iterate (Iterate_2'Access);
          end Iterate;
       begin

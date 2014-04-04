@@ -13,11 +13,11 @@ package body Test_Aircraft.Append is
    begin
       Skill.Create (State);
 
-      New_Airplane (State, SU.To_Unbounded_String ("Fokker 100"), True, 1);
-      New_Airplane (State, SU.To_Unbounded_String ("Bombardier Dash 8"), False, 2);
+      New_Airplane (State, new String'("Fokker 100"), True, 1);
+      New_Airplane (State, new String'("Bombardier Dash 8"), False, 2);
 
-      New_Helicopter (State, SU.To_Unbounded_String ("Bell 206"), False, 1);
-      New_Helicopter (State, SU.To_Unbounded_String ("Sikorsky S-76C+"), True, 2);
+      New_Helicopter (State, new String'("Bell 206"), False, 1);
+      New_Helicopter (State, new String'("Sikorsky S-76C+"), True, 2);
 
       Skill.Write (State, File_Name);
    end Set_Up;
@@ -34,8 +34,8 @@ package body Test_Aircraft.Append is
          State : access Skill_State := new Skill_State;
       begin
          Skill.Read (State, File_Name);
-         New_Airplane (State, SU.To_Unbounded_String ("General Dynamics F-16"), False, 14);
-         New_Airplane (State, SU.To_Unbounded_String ("Cessna 172"), False, 102);
+         New_Airplane (State, new String'("General Dynamics F-16"), False, 14);
+         New_Airplane (State, new String'("Cessna 172"), False, 102);
          Skill.Append (State);
       end;
 
@@ -48,14 +48,14 @@ package body Test_Aircraft.Append is
             X : Airplane_Type_Access := Skill.Get_Airplane (State, 1);
          begin
             Ahven.Assert (X.Get_Id = 1, "'first airplane'.Get_Id is not 1.");
-            Ahven.Assert (X.Get_Name = "Fokker 100", "'first airplane'.Get_Name is not 'Fokker 100'.");
+            Ahven.Assert (X.Get_Name.all = "Fokker 100", "'first airplane'.Get_Name is not 'Fokker 100'.");
             Ahven.Assert (X.Get_Operational = True, "'first airplane'.Get_Operational is not true.");
          end;
 
-         Ahven.Assert (Skill.Get_Airplane (State, 1).Get_Name = "Fokker 100", "Get_Name is not 'Fokker 100'.");
-         Ahven.Assert (Skill.Get_Airplane (State, 2).Get_Name = "Bombardier Dash 8", "Get_Name is not 'Bombardier Dash 8'.");
-         Ahven.Assert (Skill.Get_Airplane (State, 3).Get_Name = "General Dynamics F-16", "Get_Name is not 'General Dynamics F-16'.");
-         Ahven.Assert (Skill.Get_Airplane (State, 4).Get_Name = "Cessna 172", "Get_Name is not 'Cessna 172'.");
+         Ahven.Assert (Skill.Get_Airplane (State, 1).Get_Name.all = "Fokker 100", "Get_Name is not 'Fokker 100'.");
+         Ahven.Assert (Skill.Get_Airplane (State, 2).Get_Name.all = "Bombardier Dash 8", "Get_Name is not 'Bombardier Dash 8'.");
+         Ahven.Assert (Skill.Get_Airplane (State, 3).Get_Name.all = "General Dynamics F-16", "Get_Name is not 'General Dynamics F-16'.");
+         Ahven.Assert (Skill.Get_Airplane (State, 4).Get_Name.all = "Cessna 172", "Get_Name is not 'Cessna 172'.");
       end;
    end Create_Write_Read_Append_Write_Read;
 
@@ -66,9 +66,9 @@ package body Test_Aircraft.Append is
          State : access Skill_State := new Skill_State;
       begin
          Skill.Read (State, File_Name);
-         New_Airplane (State, SU.To_Unbounded_String ("General Dynamics F-16"), False, 14);
-         New_Helicopter (State, SU.To_Unbounded_String ("Sikorsky R-4"), True, 99);
-         New_Airplane (State, SU.To_Unbounded_String ("Cessna 172"), False, 102);
+         New_Airplane (State, new String'("General Dynamics F-16"), False, 14);
+         New_Helicopter (State, new String'("Sikorsky R-4"), True, 99);
+         New_Airplane (State, new String'("Cessna 172"), False, 102);
          Skill.Append (State);
       end;
 
@@ -91,9 +91,9 @@ package body Test_Aircraft.Append is
          Ahven.Assert (Skill.Get_Aircraft (State, 6).Get_Operational = False, "aircraft 6 Get_Operational is not false");
          Ahven.Assert (Skill.Get_Aircraft (State, 7).Get_Operational = True, "aircraft 7 Get_Operational is not true");
 
-         Ahven.Assert (Skill.Get_Aircraft (State, 3).Get_Name = "Bell 206", "aircraft 3 Get_Name is not 'Bell 206'");
-         Ahven.Assert (Skill.Get_Aircraft (State, 6).Get_Name = "Cessna 172", "aircraft 6 Get_Name is not 'Cessna 172'");
-         Ahven.Assert (Skill.Get_Aircraft (State, 7).Get_Name = "Sikorsky R-4", "aircraft 7 Get_Name is not 'Sikorsky R-4'");
+         Ahven.Assert (Skill.Get_Aircraft (State, 3).Get_Name.all = "Bell 206", "aircraft 3 Get_Name is not 'Bell 206'");
+         Ahven.Assert (Skill.Get_Aircraft (State, 6).Get_Name.all = "Cessna 172", "aircraft 6 Get_Name is not 'Cessna 172'");
+         Ahven.Assert (Skill.Get_Aircraft (State, 7).Get_Name.all = "Sikorsky R-4", "aircraft 7 Get_Name is not 'Sikorsky R-4'");
 
          Ahven.Assert (Skill.Get_Helicopter (State, 1).Get_Id = 1, "helicopter 1 Get_Id is not 1");
          Ahven.Assert (Skill.Get_Helicopter (State, 2).Get_Id = 2, "helicopter 2 Get_Id is not 2");

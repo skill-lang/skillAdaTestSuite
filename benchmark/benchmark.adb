@@ -11,6 +11,8 @@ with Benchmark_V64;
 with Benchmark_Number;
 with Benchmark_Date;
 
+with Benchmark_Containers;
+
 procedure Benchmark is
 
    use Ada.Calendar;
@@ -79,6 +81,7 @@ procedure Benchmark is
       Total_Time : Duration := 0.0;
    begin
       for I in 0 .. Repetitions loop
+         Ada.Text_IO.Put_Line ("--> " & Base_Name & " " & Function_Name & " ;; N: " & Trim (N'Img, Ada.Strings.Left) & " W: " & Trim (I'Img, Ada.Strings.Left));
          declare
             Start : Time := Clock;
          begin
@@ -289,12 +292,54 @@ procedure Benchmark is
       Results_HM.Clear;
    end Eval_Date;
 
+   procedure Eval_Containers (Count, Repetitions : Natural) is
+      Base_Name : constant String := "containers";
+      Base_File_Name : constant String := "";
+   begin
+      for I in 1 .. Count loop
+         Measure ("indefinite", Repetitions, Benchmark_Containers.Test_Indefinite'Access, Base_Name, Base_File_Name, Long (10 ** I * 0.25));
+         Measure ("indefinite", Repetitions, Benchmark_Containers.Test_Indefinite'Access, Base_Name, Base_File_Name, Long (10 ** I * 0.50));
+         Measure ("indefinite", Repetitions, Benchmark_Containers.Test_Indefinite'Access, Base_Name, Base_File_Name, Long (10 ** I * 0.75));
+         Measure ("indefinite", Repetitions, Benchmark_Containers.Test_Indefinite'Access, Base_Name, Base_File_Name, Long (10 ** I * 1.00));
+         Measure ("non-indefinite", Repetitions, Benchmark_Containers.Test_Non_Indefinite'Access, Base_Name, Base_File_Name, Long (10 ** I * 0.25));
+         Measure ("non-indefinite", Repetitions, Benchmark_Containers.Test_Non_Indefinite'Access, Base_Name, Base_File_Name, Long (10 ** I * 0.50));
+         Measure ("non-indefinite", Repetitions, Benchmark_Containers.Test_Non_Indefinite'Access, Base_Name, Base_File_Name, Long (10 ** I * 0.75));
+         Measure ("non-indefinite", Repetitions, Benchmark_Containers.Test_Non_Indefinite'Access, Base_Name, Base_File_Name, Long (10 ** I * 1.00));
+      end loop;
+
+      declare
+         Name : constant String := "containers-indefinite-time";
+      begin
+         if Results_HM.Contains (Name) then
+            Ada.Text_IO.Put_Line ("\addplot+[smooth,color=red,mark=square*,mark options={fill=white}] coordinates { % ada " & Name);
+            Results_HM.Element (Name).Iterate (Iterate'Access);
+            Ada.Text_IO.New_Line;
+            Ada.Text_IO.Put_Line ("};");
+         else
+            Ada.Text_IO.Put_Line ("% " & Name & " nicht vorhanden!");
+         end if;
+      end;
+
+      declare
+         Name : constant String := "containers-non-indefinite-time";
+      begin
+         if Results_HM.Contains (Name) then
+            Ada.Text_IO.Put_Line ("\addplot+[smooth,color=black,mark=star,mark options={fill=white}] coordinates { % ada " & Name);
+            Results_HM.Element (Name).Iterate (Iterate'Access);
+            Ada.Text_IO.New_Line;
+            Ada.Text_IO.Put_Line ("};");
+         else
+            Ada.Text_IO.Put_Line ("% " & Name & " nicht vorhanden!");
+         end if;
+      end;
+   end Eval_Containers;
+
 begin
 
    Ada.Text_IO.Put_Line (" >>> benchmark:");
    Ada.Text_IO.New_Line;
 
-   Eval_I64 (Count => 9, Repetitions => 4);
-   Eval_V64 (Count => 9, Repetitions => 4);
+   Eval_Containers (Count => 8, Repetitions => 0);
+   --  Eval_V64 (Count => 9, Repetitions => 4);
 
 end Benchmark;

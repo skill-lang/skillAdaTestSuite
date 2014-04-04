@@ -1,9 +1,9 @@
 with Number;
-with Number.Api.Skill;
+with Number.Api;
 
 package body Benchmark_Number is
 
-   package Skill renames Number.Api.Skill;
+   package Skill renames Number.Api;
    use Number;
    use Skill;
 
@@ -14,7 +14,7 @@ package body Benchmark_Number is
       State := new Skill_State;
       Skill.Create (State);
 
-      for I in 1 .. N loop
+      for I in 1 .. i64 (N) loop
          New_Number (State, I);
       end loop;
    end Create;

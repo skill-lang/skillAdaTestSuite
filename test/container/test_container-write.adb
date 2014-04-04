@@ -50,9 +50,9 @@ package body Test_Container.Write is
             c.Insert (8, 256);
             c.Insert (16, 128);
             c.Insert (32, 64);
-            f.Insert (SU.To_Unbounded_String ("a"), a);
-            f.Insert (SU.To_Unbounded_String ("b"), b);
-            f.Insert (SU.To_Unbounded_String ("c"), c);
+            f.Insert (new String'("a"), a);
+            f.Insert (new String'("b"), b);
+            f.Insert (new String'("c"), c);
          end;
 
          New_Container (State, arr, varr, l, s, f, someset);
@@ -159,15 +159,15 @@ package body Test_Container.Write is
          X : Container_Type_Access := Get_Container (State, 1);
          f : Container_F_Map_1.Map := X.Get_F;
       begin
-         Ahven.Assert (f.Contains (SU.To_Unbounded_String ("a")), "f does not contain string a");
-         Ahven.Assert (f.Contains (SU.To_Unbounded_String ("c")), "f does not contain string b");
-         Ahven.Assert (f.Contains (SU.To_Unbounded_String ("b")), "f does not contain string c");
-         Ahven.Assert (not f.Contains (SU.To_Unbounded_String ("d")), "f does contain string d");
+         Ahven.Assert (f.Contains (new String'("a")), "f does not contain string a");
+         Ahven.Assert (f.Contains (new String'("c")), "f does not contain string b");
+         Ahven.Assert (f.Contains (new String'("b")), "f does not contain string c");
+         Ahven.Assert (not f.Contains (new String'("d")), "f does contain string d");
 
          declare
-            a : Container_F_Map_2.Map := f.Element (SU.To_Unbounded_String ("a"));
-            b : Container_F_Map_2.Map := f.Element (SU.To_Unbounded_String ("b"));
-            c : Container_F_Map_2.Map := f.Element (SU.To_Unbounded_String ("c"));
+            a : Container_F_Map_2.Map := f.Element (new String'("a"));
+            b : Container_F_Map_2.Map := f.Element (new String'("b"));
+            c : Container_F_Map_2.Map := f.Element (new String'("c"));
          begin
             Ahven.Assert (a.Contains (1), "a does not contain 1");
             Ahven.Assert (a.Contains (2), "a does not contain 2");

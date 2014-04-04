@@ -1,9 +1,9 @@
 with Date;
-with Date.Api.Skill;
+with Date.Api;
 
 package body Benchmark_Date is
 
-   package Skill renames Date.Api.Skill;
+   package Skill renames Date.Api;
    use Date;
    use Skill;
 
@@ -14,7 +14,7 @@ package body Benchmark_Date is
       State := new Skill_State;
       Skill.Create (State);
 
-      for I in 1 .. N loop
+      for I in 1 .. i64 (N) loop
          New_Date (State, I);
       end loop;
    end Create;

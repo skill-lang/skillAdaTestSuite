@@ -19,6 +19,9 @@ with Test_Container.Write;
 with Test_Date.Append;
 with Test_Date.Read;
 
+with Test_Floats.Read;
+with Test_Floats.Write;
+
 with Test_Foreign.Read;
 
 with Test_Colored_Nodes.Read;
@@ -51,6 +54,9 @@ begin
 
    Ahven.Framework.Add_Test (Suite, new Test_Date.Append.Test);
    Ahven.Framework.Add_Test (Suite, new Test_Date.Read.Test);
+
+   Ahven.Framework.Add_Test (Suite, new Test_Floats.Read.Test);
+   Ahven.Framework.Add_Test (Suite, new Test_Floats.Write.Test);
 
    Ahven.Framework.Add_Test (Suite, new Test_Foreign.Read.Test);
 
