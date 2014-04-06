@@ -1,4 +1,3 @@
-with Date;
 with Byte_Writer;
 with Byte_Reader;
 

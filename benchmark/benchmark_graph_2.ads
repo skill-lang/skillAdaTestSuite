@@ -1,4 +1,6 @@
-package Benchmark_Number is
+with Graph_2.Api;
+
+package Benchmark_Graph_2 is
 
    subtype Long is Long_Integer;
 
@@ -9,4 +11,4 @@ package Benchmark_Number is
    procedure Append (N : Long; File_Name : String);
    procedure Reset (N : Long; File_Name : String);
 
-end Benchmark_Number;
+end Benchmark_Graph_2;

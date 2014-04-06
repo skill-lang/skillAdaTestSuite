@@ -13,13 +13,15 @@ package Byte_Reader is
    package ASS_IO renames Ada.Streams.Stream_IO;
    type Byte is new Interfaces.Unsigned_8;
 
-   type i8 is range -(2**7) .. +(2**7 - 1);
-   type i16 is range -(2**15) .. +(2**15 - 1);
+   type i8 is new Interfaces.Integer_8;
+   type i16 is new Interfaces.Integer_16;
    subtype Short is i16;
-   type i32 is range -(2**31) .. +(2**31 - 1);
-   type i64 is range -(2**63) .. +(2**63 - 1);
+   type i32 is new Interfaces.Integer_32;
+   type i64 is new Interfaces.Integer_64;
    subtype v64 is i64;
    subtype Long is i64;
+   type f32 is new Interfaces.IEEE_Float_32;
+   type f64 is new Interfaces.IEEE_Float_64;
 
    procedure Reset_Buffer;
    function End_Of_Buffer return Boolean;

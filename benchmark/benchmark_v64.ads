@@ -1,5 +1,9 @@
+with Ada.Numerics.Discrete_Random;
 with Ada.Streams.Stream_IO;
 with Interfaces;
+
+with Byte_Writer;
+with Byte_Reader;
 
 package Benchmark_V64 is
 

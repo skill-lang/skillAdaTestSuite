@@ -1,4 +1,3 @@
-with Date;
 with Byte_Writer;
 with Byte_Reader;
 
@@ -14,7 +13,7 @@ package body Benchmark_V64 is
       declare
          use Byte_Writer;
       begin
-         for I in 1 .. v64 (N) loop
+         for I in 1 .. i64 (N) loop
             Write_v64 (Output_Stream, I);
          end loop;
       end;
