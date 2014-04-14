@@ -7,37 +7,37 @@ procedure Eval_Date (Count, Repetitions : Natural) is
 begin
    for J in 0 .. Repetitions loop
       for I in 1 .. Count loop
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "create", Benchmark_Date.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "write", Benchmark_Date.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "reset", Benchmark_Date.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "read", Benchmark_Date.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "create-more", Benchmark_Date.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "append", Benchmark_Date.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "reset", Benchmark_Date.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "create", Benchmark_Date.Create'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "write", Benchmark_Date.Write'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "reset", Benchmark_Date.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "read", Benchmark_Date.Read'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "create-more", Benchmark_Date.Create_More'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "append", Benchmark_Date.Append'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "reset", Benchmark_Date.Reset'Access);
 
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "create", Benchmark_Date.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "write", Benchmark_Date.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "reset", Benchmark_Date.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "read", Benchmark_Date.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "create-more", Benchmark_Date.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "append", Benchmark_Date.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "reset", Benchmark_Date.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "create", Benchmark_Date.Create'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "write", Benchmark_Date.Write'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "reset", Benchmark_Date.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "read", Benchmark_Date.Read'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "create-more", Benchmark_Date.Create_More'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "append", Benchmark_Date.Append'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "reset", Benchmark_Date.Reset'Access);
 
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "create", Benchmark_Date.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "write", Benchmark_Date.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "reset", Benchmark_Date.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "read", Benchmark_Date.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "create-more", Benchmark_Date.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "append", Benchmark_Date.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "reset", Benchmark_Date.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "create", Benchmark_Date.Create'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "write", Benchmark_Date.Write'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "reset", Benchmark_Date.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "read", Benchmark_Date.Read'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "create-more", Benchmark_Date.Create_More'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "append", Benchmark_Date.Append'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "reset", Benchmark_Date.Reset'Access);
 
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "create", Benchmark_Date.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "write", Benchmark_Date.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "reset", Benchmark_Date.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "read", Benchmark_Date.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "create-more", Benchmark_Date.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "append", Benchmark_Date.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "reset", Benchmark_Date.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "create", Benchmark_Date.Create'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "write", Benchmark_Date.Write'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "reset", Benchmark_Date.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "read", Benchmark_Date.Read'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "create-more", Benchmark_Date.Create_More'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "append", Benchmark_Date.Append'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "reset", Benchmark_Date.Reset'Access);
       end loop;
    end loop;
 

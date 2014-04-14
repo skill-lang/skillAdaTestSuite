@@ -30,11 +30,11 @@ procedure Benchmark is
    Total_Size_HM : Total_Size_Hashed_Map_Access := new Total_Size_Hashed_Map.Map;
    Total_Time_HM : Total_Time_Hashed_Map_Access := new Total_Time_Hashed_Map.Map;
 
-   package N_Ordered_Set is new Ada.Containers.Ordered_Sets (Long, "<", "=");
+   package N_Ordered_Set is new Ada.Containers.Ordered_Sets (Integer, "<", "=");
    type N_Ordered_Set_Access is access N_Ordered_Set.Set;
    N_OS : N_Ordered_Set_Access := new N_Ordered_Set.Set;
 
-   procedure Measure (Base_Name : String; N : Long; J : Natural; Function_Name : String; Test : access procedure (N : Long; File_Name : String)) is
+   procedure Measure (Base_Name : String; N : Integer; J : Natural; Function_Name : String; Test : access procedure (N : Integer; File_Name : String)) is
       function Calculate (Start : Ada.Calendar.Time) return Duration is
          (Clock - Start);
       pragma Inline (Calculate);
@@ -79,7 +79,7 @@ procedure Benchmark is
       use N_Ordered_Set;
 
       procedure Iterate (Position : Cursor) is
-         N : Long := Element (Position);
+         N : Long := Long (Element (Position));
          Name_Write : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-write";
          Name_Append : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-append";
          Corrected_Size : Long := Total_Size_HM.Element (Name_Append) - Total_Size_HM.Element (Name_Write);
@@ -98,7 +98,7 @@ procedure Benchmark is
       use N_Ordered_Set;
 
       procedure Iterate_Size (Position : Cursor) is
-         N : Long := Element (Position);
+         N : Long := Long (Element (Position));
          Name : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-" & Function_Name;
          Size : Long := Total_Size_HM.Element (Name) / Long (1 + Repetitions);
          X : Duration := Duration (Size) / Duration (N);  --  size / instance
@@ -109,7 +109,7 @@ procedure Benchmark is
       pragma Inline (Iterate_Size);
 
       procedure Iterate_Time (Position : Cursor) is
-         N : Long := Element (Position);
+         N : Long := Long (Element (Position));
          Name : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-" & Function_Name;
          Time : Duration := Total_Time_HM.Element (Name) / Duration (1 + Repetitions);
          S : String := Trim (Time'Img, Ada.Strings.Left);
@@ -119,7 +119,7 @@ procedure Benchmark is
       pragma Inline (Iterate_Time);
 
       procedure Iterate_Throughput (Position : Cursor) is
-         N : Long := Element (Position);
+         N : Long := Long (Element (Position));
          Name : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-" & Function_Name;
          Size : Long := Total_Size_HM.Element (Name) / Long (1 + Repetitions);
          Time : Duration := Total_Time_HM.Element (Name) / Duration (1 + Repetitions);
@@ -156,19 +156,33 @@ procedure Benchmark is
    procedure Eval_Date (Count, Repetitions : Natural) is separate;
    procedure Eval_Graph_1 (Count, Repetitions : Natural) is separate;
    procedure Eval_Graph_2 (Count, Repetitions : Natural) is separate;
+
+   procedure Eval_S_Number (Count, Repetitions : Natural) is separate;
+   procedure Eval_S_Date (Count, Repetitions : Natural) is separate;
+   procedure Eval_S_Graph_1 (Count, Repetitions : Natural) is separate;
+   procedure Eval_S_Graph_2 (Count, Repetitions : Natural) is separate;
+
 begin
 
    Ada.Text_IO.Put_Line (" >>> benchmark:");
    Ada.Text_IO.New_Line;
 
    Reset;
-   --Eval_Number (Count => 8, Repetitions => 0);
+   --Eval_Number (Count => 8, Repetitions => 2);
    Reset;
-   --Eval_Date (Count => 8, Repetitions => 0);
+   --Eval_Date (Count => 8, Repetitions => 2);
    Reset;
-   Eval_Graph_1 (Count => 7, Repetitions => 10);
+   --Eval_Graph_1 (Count => 8, Repetitions => 10);
    Reset;
-   --Eval_Graph_2 (Count => 7, Repetitions => 0);
+   --Eval_Graph_2 (Count => 7, Repetitions => 10);
+   Reset;
+   --Eval_S_Number (Count => 7, Repetitions => 0);
+   Reset;
+   --Eval_S_Date (Count => 7, Repetitions => 0);
+   Reset;
+   --Eval_S_Graph_1 (Count => 7, Repetitions => 0);
+   Reset;
+   --Eval_S_Graph_2 (Count => 1, Repetitions => 0);
    Reset;
 
 end Benchmark;

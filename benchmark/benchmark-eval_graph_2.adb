@@ -7,37 +7,39 @@ procedure Eval_Graph_2 (Count, Repetitions : Natural) is
 begin
    for J in 0 .. Repetitions loop
       for I in 1 .. Count loop
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "create", Benchmark_Graph_2.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "write", Benchmark_Graph_2.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "reset", Benchmark_Graph_2.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "read", Benchmark_Graph_2.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "create-more", Benchmark_Graph_2.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "append", Benchmark_Graph_2.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "reset", Benchmark_Graph_2.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "create", Benchmark_Graph_2.Create'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "write", Benchmark_Graph_2.Write'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "reset", Benchmark_Graph_2.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "read", Benchmark_Graph_2.Read'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "create-more", Benchmark_Graph_2.Create_More'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "append", Benchmark_Graph_2.Append'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.25), J, "reset", Benchmark_Graph_2.Reset'Access);
 
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "create", Benchmark_Graph_2.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "write", Benchmark_Graph_2.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "reset", Benchmark_Graph_2.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "read", Benchmark_Graph_2.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "create-more", Benchmark_Graph_2.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "append", Benchmark_Graph_2.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "reset", Benchmark_Graph_2.Reset'Access);
+         if 7 > I then
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "create", Benchmark_Graph_2.Create'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "write", Benchmark_Graph_2.Write'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "reset", Benchmark_Graph_2.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "read", Benchmark_Graph_2.Read'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "create-more", Benchmark_Graph_2.Create_More'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "append", Benchmark_Graph_2.Append'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.50), J, "reset", Benchmark_Graph_2.Reset'Access);
 
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "create", Benchmark_Graph_2.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "write", Benchmark_Graph_2.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "reset", Benchmark_Graph_2.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "read", Benchmark_Graph_2.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "create-more", Benchmark_Graph_2.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "append", Benchmark_Graph_2.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "reset", Benchmark_Graph_2.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "create", Benchmark_Graph_2.Create'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "write", Benchmark_Graph_2.Write'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "reset", Benchmark_Graph_2.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "read", Benchmark_Graph_2.Read'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "create-more", Benchmark_Graph_2.Create_More'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "append", Benchmark_Graph_2.Append'Access);
+         Measure (Base_Name, Integer (10 ** I * 0.75), J, "reset", Benchmark_Graph_2.Reset'Access);
 
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "create", Benchmark_Graph_2.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "write", Benchmark_Graph_2.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "reset", Benchmark_Graph_2.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "read", Benchmark_Graph_2.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "create-more", Benchmark_Graph_2.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "append", Benchmark_Graph_2.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "reset", Benchmark_Graph_2.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "create", Benchmark_Graph_2.Create'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "write", Benchmark_Graph_2.Write'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "reset", Benchmark_Graph_2.Reset'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "read", Benchmark_Graph_2.Read'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "create-more", Benchmark_Graph_2.Create_More'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "append", Benchmark_Graph_2.Append'Access);
+         Measure (Base_Name, Integer (10 ** I * 1.00), J, "reset", Benchmark_Graph_2.Reset'Access);
+         end if;
       end loop;
    end loop;
 

@@ -7,37 +7,53 @@ procedure Eval_Graph_1 (Count, Repetitions : Natural) is
 begin
    for J in 0 .. Repetitions loop
       for I in 1 .. Count loop
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "create", Benchmark_Graph_1.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "write", Benchmark_Graph_1.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "reset", Benchmark_Graph_1.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "read", Benchmark_Graph_1.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "create-more", Benchmark_Graph_1.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "append", Benchmark_Graph_1.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 0.25), J, "reset", Benchmark_Graph_1.Reset'Access);
+         declare
+            package X is new Benchmark_Graph_1;
+         begin
+            Measure (Base_Name, Integer (10 ** I * 0.25), J, "create", X.Create'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.25), J, "write", X.Write'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.25), J, "reset", X.Reset'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.25), J, "read", X.Read'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.25), J, "create-more", X.Create_More'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.25), J, "append", X.Append'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.25), J, "reset", X.Reset'Access);
+         end;
 
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "create", Benchmark_Graph_1.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "write", Benchmark_Graph_1.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "reset", Benchmark_Graph_1.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "read", Benchmark_Graph_1.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "create-more", Benchmark_Graph_1.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "append", Benchmark_Graph_1.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 0.50), J, "reset", Benchmark_Graph_1.Reset'Access);
+         declare
+            package X is new Benchmark_Graph_1;
+         begin
+            Measure (Base_Name, Integer (10 ** I * 0.50), J, "create", X.Create'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.50), J, "write", X.Write'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.50), J, "reset", X.Reset'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.50), J, "read", X.Read'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.50), J, "create-more", X.Create_More'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.50), J, "append", X.Append'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.50), J, "reset", X.Reset'Access);
+         end;
 
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "create", Benchmark_Graph_1.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "write", Benchmark_Graph_1.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "reset", Benchmark_Graph_1.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "read", Benchmark_Graph_1.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "create-more", Benchmark_Graph_1.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "append", Benchmark_Graph_1.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 0.75), J, "reset", Benchmark_Graph_1.Reset'Access);
+         declare
+            package X is new Benchmark_Graph_1;
+         begin
+            Measure (Base_Name, Integer (10 ** I * 0.75), J, "create", X.Create'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.75), J, "write", X.Write'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.75), J, "reset", X.Reset'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.75), J, "read", X.Read'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.75), J, "create-more", X.Create_More'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.75), J, "append", X.Append'Access);
+            Measure (Base_Name, Integer (10 ** I * 0.75), J, "reset", X.Reset'Access);
+         end;
 
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "create", Benchmark_Graph_1.Create'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "write", Benchmark_Graph_1.Write'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "reset", Benchmark_Graph_1.Reset'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "read", Benchmark_Graph_1.Read'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "create-more", Benchmark_Graph_1.Create_More'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "append", Benchmark_Graph_1.Append'Access);
-         Measure (Base_Name, Long (10 ** I * 1.00), J, "reset", Benchmark_Graph_1.Reset'Access);
+         declare
+            package X is new Benchmark_Graph_1;
+         begin
+            Measure (Base_Name, Integer (10 ** I * 1.00), J, "create", X.Create'Access);
+            Measure (Base_Name, Integer (10 ** I * 1.00), J, "write", X.Write'Access);
+            Measure (Base_Name, Integer (10 ** I * 1.00), J, "reset", X.Reset'Access);
+            Measure (Base_Name, Integer (10 ** I * 1.00), J, "read", X.Read'Access);
+            Measure (Base_Name, Integer (10 ** I * 1.00), J, "create-more", X.Create_More'Access);
+            Measure (Base_Name, Integer (10 ** I * 1.00), J, "append", X.Append'Access);
+            Measure (Base_Name, Integer (10 ** I * 1.00), J, "reset", X.Reset'Access);
+         end;
       end loop;
    end loop;
 

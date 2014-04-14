@@ -1,9 +1,11 @@
 with Ada.Numerics.Discrete_Random;
+with Ada.Streams.Stream_IO;
 with Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
 with Hashing;
+with Ada.Containers.Vectors;
 
-package body Benchmark_Graph_2 is
+package body Benchmark_S_Graph_2 is
 
    package Skill renames Graph_2.Api;
    use Graph_2;
@@ -70,76 +72,68 @@ package body Benchmark_Graph_2 is
    end Create;
 
    procedure Write (N : Integer; File_Name : String) is
+      package ASS_IO renames Ada.Streams.Stream_IO;
+
+      File : ASS_IO.File_Type;
+      Stream : ASS_IO.Stream_Access;
+
+      procedure Free is new Ada.Unchecked_Deallocation (Node_Type_Array, Node_Type_Accesses);
+      Objects : Node_Type_Accesses := Skill.Get_Nodes (State);
    begin
-      Skill.Write (State, File_Name);
+      ASS_IO.Create (File, ASS_IO.Out_File, File_Name);
+      Stream := ASS_IO.Stream (File);
+
+      for I in Objects'Range loop
+         Node_Type'Output (Stream, Objects (I).all);
+      end loop;
+
+      ASS_IO.Close (File);
+      Free (Objects);
    end Write;
 
    procedure Read (N : Integer; File_Name : String) is
+      package ASS_IO renames Ada.Streams.Stream_IO;
+
+      File : ASS_IO.File_Type;
+      Stream : ASS_IO.Stream_Access;
+
+      package Vector is new Ada.Containers.Vectors (Positive, Node_Type);
+      Storage_Pool : Vector.Vector;
    begin
-      State := new Skill_State;
-      Skill.Read (State, File_Name);
-   end Read;
+      ASS_IO.Open (File, ASS_IO.In_File, File_Name);
+      Stream := ASS_IO.Stream (File);
 
-   procedure Create_More (N : Integer; File_Name : String) is
-      function Hash is new Hashing.Discrete_Hash (Integer);
-
-      type Objects_Type is array (0 .. N-1) of Node_Type_Access;
-      type Objects_Type_Access is access Objects_Type;
-      Objects : Objects_Type_Access := new Objects_Type;
-      procedure Free is new Ada.Unchecked_Deallocation (Objects_Type, Objects_Type_Access);
-   begin
-      String_Black := new String'("black");
-      String_Red := new String'("red");
-
-      for I in 0 .. N-1 loop
+      while not ASS_IO.End_Of_File (File) loop
          declare
-            Name : String_Access := String_Black;
-            Edges : Node_Edges_Set.Set;
+            X : Node_Type := Node_Type'Input (Stream);
          begin
-            if 0 = I mod 2 then
-               Name := String_Red;
-            end if;
-            Objects (I) := New_Node (State, Name, Edges);
-         end;
-      end loop;
+            Storage_Pool.Append (X);
 
-      for I in 0 .. N-1 loop
-         declare
-            X : Node_Type_Access := Objects (I);
-            Edges : Node_Edges_Set.Set := X.Get_Edges;
-            J : Integer := 0;
-         begin
-            while (50 >= N and then N > Integer (Edges.Length)) or else (50 < N and then 50 > Integer (Edges.Length)) loop
-               J := J + 1;
-               declare
-                  A : Integer := Integer (Hash (N + I + J, 13372)) mod N;
+            declare
+               use Node_Edges_Set;
+
+               procedure Iterate (Position : Cursor) is
+                  X : Node_Type_Access := Element (Position);
                begin
-                  --  Ada.Text_IO.Put_Line (A'Img);
-                  if not Edges.Contains (Objects (A)) then
-                     Edges.Insert (Objects (A));
-                  end if;
-               end;
-            end loop;
-            X.Set_Edges (Edges);
+                  Ada.Text_IO.Put_Line (X.Get_Color.all);
+               end Iterate;
+            begin
+               X.Get_Edges.Iterate (Iterate'Access);
+            end;
          end;
       end loop;
 
-      Free (Objects);
-   end Create_More;
-
-   procedure Append (N : Integer; File_Name : String) is
-   begin
-      Skill.Append (State);
-   end Append;
+      ASS_IO.Close (File);
+   end Read;
 
    procedure Reset (N : Integer; File_Name : String) is
       procedure Free is new Ada.Unchecked_Deallocation (Skill_State, State_Type);
       procedure Free is new Ada.Unchecked_Deallocation (String, String_Access);
    begin
       Skill.Close (State);
-      Free (String_Black);
-      Free (String_Red);
+      --Free (String_Black);
+      --Free (String_Red);
       Free (State);
    end Reset;
 
-end Benchmark_Graph_2;
+end Benchmark_S_Graph_2;
