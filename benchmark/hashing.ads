@@ -1,3 +1,6 @@
+--  taken from http://commons.ada.cx/Deterministic_Hashing
+--  license: public domain
+
 with Ada.Containers;
 with System.Storage_Elements;
 

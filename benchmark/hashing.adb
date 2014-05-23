@@ -1,3 +1,6 @@
+--  taken from http://commons.ada.cx/Deterministic_Hashing
+--  license: public domain
+
 with Ada.Unchecked_Conversion;
 
 package body Hashing is
