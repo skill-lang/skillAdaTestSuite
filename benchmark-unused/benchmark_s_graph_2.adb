@@ -83,8 +83,8 @@ package body Benchmark_S_Graph_2 is
       ASS_IO.Create (File, ASS_IO.Out_File, File_Name);
       Stream := ASS_IO.Stream (File);
 
-      for I in Objects'Range loop
-         Node_Type'Output (Stream, Objects (I).all);
+      for Object of Objects.all loop
+         Node_Type'Output (Stream, Object.all);
       end loop;
 
       ASS_IO.Close (File);
@@ -115,9 +115,11 @@ package body Benchmark_S_Graph_2 is
                procedure Iterate (Position : Cursor) is
                   X : Node_Type_Access := Element (Position);
                begin
-                  Ada.Text_IO.Put_Line (X.Get_Color.all);
+                  null;
+--                  Ada.Text_IO.Put_Line ("--> " & X.all.Get_Skill_Id'Img);
                end Iterate;
             begin
+--               Ada.Text_IO.Put_Line (X.Get_Skill_Id'Img);
                X.Get_Edges.Iterate (Iterate'Access);
             end;
          end;
@@ -131,8 +133,8 @@ package body Benchmark_S_Graph_2 is
       procedure Free is new Ada.Unchecked_Deallocation (String, String_Access);
    begin
       Skill.Close (State);
-      --Free (String_Black);
-      --Free (String_Red);
+      Free (String_Black);
+      Free (String_Red);
       Free (State);
    end Reset;
 
