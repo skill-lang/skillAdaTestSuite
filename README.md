@@ -4,7 +4,8 @@ README
 skill-ada
 
 # Ahven: test suite
-Download ahven into this directory, unpack it and change to the extracted folder. Then build ahven with `make PREFIX=../lib/ahven build_lib install_lib`
+1) remove lib/ahven, if exists
+2) Download ahven into this directory, unpack it and change to the extracted folder. Then build ahven with `make PREFIX=../lib/ahven build_lib install_lib`
 
 # Run tests
 make check
