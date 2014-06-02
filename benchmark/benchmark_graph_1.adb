@@ -3,6 +3,8 @@ with Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
 with Hashing;
 
+with Graph_1.Api;
+
 package body Benchmark_Graph_1 is
 
    package Skill renames Graph_1.Api;

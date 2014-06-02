@@ -168,21 +168,22 @@ begin
    Ada.Text_IO.New_Line;
 
    Reset;
-   --Eval_Number (Count => 6, Repetitions => 0);
+   Eval_Number (Count => 8, Repetitions => 10);
    Reset;
-   --Eval_Date (Count => 8, Repetitions => 2);
+   Eval_Date (Count => 8, Repetitions => 10);
    Reset;
-   --Eval_Graph_1 (Count => 8, Repetitions => 10);
+   Eval_Graph_1 (Count => 8, Repetitions => 10);
    Reset;
-   --Eval_Graph_2 (Count => 7, Repetitions => 10);
+   Eval_Graph_2 (Count => 7, Repetitions => 10);
    Reset;
-   Eval_S_Number (Count => 6, Repetitions => 0);
+   --Eval_S_Number (Count => 0, Repetitions => 8);
    Reset;
    --Eval_S_Date (Count => 8, Repetitions => 10);
    Reset;
+
    --Eval_S_Graph_1 (Count => 1, Repetitions => 0);
-   Reset;
-   --Eval_S_Graph_2 (Count => 1, Repetitions => 0);
-   Reset;
+   --Reset;
+   --Eval_S_Graph_2 (Count => 0, Repetitions => 7);
+   --Reset;
 
 end Benchmark;

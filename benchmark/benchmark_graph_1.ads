@@ -1,5 +1,3 @@
-with Graph_1.Api;
-
 generic
 package Benchmark_Graph_1 is
 

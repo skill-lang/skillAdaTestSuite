@@ -1,5 +1,3 @@
-with Graph_2.Api;
-
 package Benchmark_Graph_2 is
 
    subtype Long is Long_Integer;
