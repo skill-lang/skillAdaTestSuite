@@ -22,8 +22,10 @@ procedure Benchmark is
    use Ada.Directories;
    use Ada.Strings.Fixed;
 
-   package Total_Size_Hashed_Map is new Ada.Containers.Indefinite_Hashed_Maps (String, Long, Ada.Strings.Hash, "=");
-   package Total_Time_Hashed_Map is new Ada.Containers.Indefinite_Hashed_Maps (String, Duration, Ada.Strings.Hash, "=");
+   package Total_Size_Hashed_Map is new Ada.Containers.Indefinite_Hashed_Maps
+      (String, Long, Ada.Strings.Hash, "=");
+   package Total_Time_Hashed_Map is new Ada.Containers.Indefinite_Hashed_Maps
+      (String, Duration, Ada.Strings.Hash, "=");
    type Total_Size_Hashed_Map_Access is access Total_Size_Hashed_Map.Map;
    type Total_Time_Hashed_Map_Access is access Total_Time_Hashed_Map.Map;
 
@@ -34,13 +36,19 @@ procedure Benchmark is
    type N_Ordered_Set_Access is access N_Ordered_Set.Set;
    N_OS : N_Ordered_Set_Access := new N_Ordered_Set.Set;
 
-   procedure Measure (Base_Name : String; N : Integer; J : Natural; Function_Name : String; Test : access procedure (N : Integer; File_Name : String)) is
+   procedure Measure (
+      Base_Name     : String;
+      N             : Integer;
+      J             : Natural;
+      Function_Name : String;
+      Test          : access procedure (N : Integer; File_Name : String)
+   ) is
       function Calculate (Start : Ada.Calendar.Time) return Duration is
          (Clock - Start);
       pragma Inline (Calculate);
 
       File_Name : constant String := Path & Base_Name & "-N" & Trim (N'Img, Ada.Strings.Left) & ".sf";
-      Name : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-" & Function_Name;
+      Name      : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-" & Function_Name;
    begin
       Ada.Text_IO.Put_Line ("--> " & Base_Name & " " & Function_Name & " ;; N: " & Trim (N'Img, Ada.Strings.Left) & "::" & Trim (J'Img, Ada.Strings.Left));
 
@@ -60,9 +68,9 @@ procedure Benchmark is
          Test (N, File_Name);
 
          declare
-            Measured : Duration := Calculate (Start);
+            Measured   : Duration := Calculate (Start);
 
-            Total_Size : Long := 0;
+            Total_Size : Long     := 0;
             Total_Time : Duration := Total_Time_HM.Element (Name) + Measured;
          begin
             if "write" = Function_Name or else "read" = Function_Name or else "append" = Function_Name then
@@ -79,10 +87,10 @@ procedure Benchmark is
       use N_Ordered_Set;
 
       procedure Iterate (Position : Cursor) is
-         N : Long := Long (Element (Position));
-         Name_Write : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-write";
-         Name_Append : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-append";
-         Corrected_Size : Long := Total_Size_HM.Element (Name_Append) - Total_Size_HM.Element (Name_Write);
+         N              :          Long   := Long (Element (Position));
+         Name_Write     : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-write";
+         Name_Append    : constant String := Base_Name & "-" & Trim (N'Img, Ada.Strings.Left) & "-append";
+         Corrected_Size :          Long   := Total_Size_HM.Element (Name_Append) - Total_Size_HM.Element (Name_Write);
       begin
          Total_Size_HM.Replace (Name_Append, Corrected_Size);
       end Iterate;
@@ -91,10 +99,18 @@ procedure Benchmark is
       N_OS.Iterate (Iterate'Access);
    end;
 
-   function Get_String (N : Long; S : String) return String is
+   function Get_String (
+      N : Long;
+      S : String
+   ) return String is
       ("(" & Trim (N'Img, Ada.Strings.Left) & ", " & S & ")");
 
-   procedure Print (Base_Name : String; Repetitions : Natural; Function_Name : String; What : Print_Type) is
+   procedure Print (
+      Base_Name     : String;
+      Repetitions   : Natural;
+      Function_Name : String;
+      What          : Print_Type
+   ) is
       use N_Ordered_Set;
 
       procedure Iterate_Size (Position : Cursor) is
