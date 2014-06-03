@@ -6,7 +6,7 @@
 --  Baldrick on #ada provided an implementation of Murmur3.
 --  Generic_Murmur3 is the core logic, the rest are convenience functions.
 --
---  license: asked on #ada (Baldrick): public domain
+--  license: asked on #ada (Baldrick, 2014-04-07): public domain
 
 with Ada.Containers;
 with System.Storage_Elements;
