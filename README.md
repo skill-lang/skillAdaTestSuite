@@ -1,0 +1,4 @@
+skillAdaTestSuite
+=================
+
+contains Ada tests
