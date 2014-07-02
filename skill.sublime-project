@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"path": "gnat"
+		},
+		{
+			"path": "src"
+		},
+		{
+			"path": "test"
+		}
+	]
+}

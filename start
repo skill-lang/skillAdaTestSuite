@@ -1,0 +1,3 @@
+#!/bin/zsh
+ulimit -s unlimited
+time ./main

@@ -1,5 +1,84 @@
-# Object file
+# ada
+main
+tester
+src/**
 *.o
-
-# Ada Library Information
 *.ali
+
+# sublime text 2
+*.sublime-workspace
+
+# skill-test subprojects
+testsuites/*
+
+*.pydevproject
+.project
+.metadata
+bin/**
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# kile backups
+*.tex.backup
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc
+*.mtc0
+*.nav
+*.nlo
+*.out
+*.pdfsync
+*.ps
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdy
+*.tdo
+.*
+!.gitignore
+*~
+
+# sbt project
+project/**
+!project/plugins.sbt
+target/**
+
+# Mac OS X
+.DS_Store
