@@ -55,7 +55,7 @@ package body Test_Container.Write is
             f.Insert (new String'("c"), c);
          end;
 
-         New_Container (State, arr, varr, l, s, f, someset);
+         New_Container (State, arr, f, l, s, someset, varr);
       end;
 
       Skill.Write (State, File_Name);
