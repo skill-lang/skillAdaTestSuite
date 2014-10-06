@@ -29,8 +29,8 @@ package body Test_Floats.Write is
          X : Float_Test_Type_Access := Get_Float_Test (State, 1);
       begin
          Ahven.Assert (X.Get_Zero = 0.0, "is not zero");
-         Ahven.Assert (X.Get_MinusZero = -0.0, "is not minus zero");
-         Ahven.Assert (X.Get_Zero = X.Get_MinusZero, "zero /= minus zero");
+         Ahven.Assert (X.Get_Minus_Zero = -0.0, "is not minus zero");
+         Ahven.Assert (X.Get_Zero = X.Get_Minus_Zero, "zero /= minus zero");
          Ahven.Assert (X.Get_Two = 2.0, "is not two");
          Ahven.Assert (X.Get_Pi = Ada.Numerics.Pi, "is not PI");
          Ahven.Assert (X.Get_NaN /= X.Get_NaN, "is not NaN");
@@ -46,8 +46,8 @@ package body Test_Floats.Write is
          X : Double_Test_Type_Access := Get_Double_Test (State, 1);
       begin
          Ahven.Assert (X.Get_Zero = 0.0, "is not zero");
-         Ahven.Assert (X.Get_MinusZero = -0.0, "is not minus zero");
-         Ahven.Assert (X.Get_Zero = X.Get_MinusZero, "zero /= minus zero");
+         Ahven.Assert (X.Get_Minus_Zero = -0.0, "is not minus zero");
+         Ahven.Assert (X.Get_Zero = X.Get_Minus_Zero, "zero /= minus zero");
          Ahven.Assert (X.Get_Two = 2.0, "is not two");
          Ahven.Assert (X.Get_Pi = Ada.Numerics.Pi, "is not PI");
          Ahven.Assert (X.Get_NaN /= X.Get_NaN, "is not NaN");
