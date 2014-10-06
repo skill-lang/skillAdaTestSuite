@@ -16,7 +16,7 @@ build_benchmark:
 benchmark: build_benchmark
 
 check: build_tests
-	./tester
+	mkdir -p results && ./tester -x -d results
 
 clean:
 	gprclean $(LIB_AHVEN) gnat/skill_tests.gpr
